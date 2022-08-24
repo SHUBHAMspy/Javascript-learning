@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+      
+      *     {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(
+          #00b5ff,
+          #3855e7, 
+        #a248f5);
+        
+        font-family: 'Lato', sans-serif;
+        border: solid 15px #fff;
+        display: flex;
+        height:  100vh;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
+        /* gap:20px */
+      }
+
+      ul{
+        margin-top: 10px;
+      }
+
+
+      
+      .container {
+        border: solid 5px #fff;
+        padding: 30px;
+        border-radius: 20px;
+        font-size: 3rem;
+        text-align: center;
+        color: #fff;
+      }
+
+      .container li {
+        margin-bottom: 10px;
+        border: solid 2px #fff;
+        padding: 5px;
+        cursor: pointer;
+        background-color: white;
+        color: black;
+      }
+
+      .div2 {
+          border: solid 10px #fff;
+          border-radius: 20px;
+          font-size: 3.5rem;
+          text-align: center;
+          padding: 80px;
+          color: #fff;
+
+      }
+      .div1 {
+          border: solid 5px #fff;
+          border-radius: 20px;
+          font-size: 3.5rem;
+          text-align: center;
+          padding: 50px;
+          color: #fff;
+
+      }
+
+      #main-heading{
+        margin-bottom: 20px;
+      }
+
+      button {
+        display: block;
+        font-size: 30px;
+        background: none;
+        border: solid 2px #fff;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 30px;
+        margin-top: 10px;
+        margin:auto;
+        background-color: black;
+        cursor: pointer;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 id="main-heading">Favourite Tv Series</h1>
+    <button id="hide-button">Hide/Reveal</button>
+    <ul >
+      <li class="list-item">Friends <span> with benefits</span></li>
+      <li class="list-item">Big Bang Therory</li>
+      <li class="list-item">Mordern Family</li>
+      <li class="list-item">tennis</li>
+      <li class="list-item">golf</li>
+      
+      <button id="load-button" onclick="alert('No more Movies')">Load More</button>
+    </ul>
+  </div>
+  
+</body>
+
+
+<script src="app.js"></script>
+
+</html> 
