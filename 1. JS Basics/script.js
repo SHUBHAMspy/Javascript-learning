@@ -1,9 +1,9 @@
 /***************************
  * variables used in javascript
 */
-/*
+
 // ES5 Syntax
-// var is function scoped
+// var is function scoped or global scoped
 var firstName ='Shubham';
 console .log(firstName);
 
@@ -19,20 +19,39 @@ console.log(fullAge);
 var job="student";
 console.log(job);
 
-var sex;
-// sex of a male
+// variables declared with var can be initialized at any time.
+// You can even use the variable before it is declared:
 sex='male';
+var sex;
 console.log(sex);
 
 // ES6 Syntax
 
-//const is for constants whose value should not be changed
+//const is for constants whose value should not be changed(little misleading).
 // const and let are block scoped
+// A block can be created by a function, for loops and if-else statements 
+// A const cannot be reassigned.
 const firstName6 ='Shubham';
 console .log(firstName);
+// firstName6 = 'zap' Error: Assignment to constant variable
+console.log(firstName6);
 
 const lastName6 ='Pandey';
-console.log(lastName);
+console.log(lastName6);
+
+// An array declared with const cannot be reassigned
+const names6 = ["Shubham","Saurabh"];
+// names6 = ["zap","sap"];  Error: Assignment to constant variable
+
+// The keyword const is a little misleading.
+// It does NOT define a constant array. It defines a constant reference to an array.
+//Because of this, we can still change the elements of a constant array.
+names6[0] = "zap";
+console.log(names6);
+
+// const variables must be assigned a value when they are declared:
+// const sex6;   // Using const without initializing is a syntax error.
+// sex6 = 'male';
 
 // let is like normal variables whose value can be changed
 let age6=20;
@@ -44,9 +63,8 @@ console.log(fullAge);
 let job6="student";
 console.log(job);
 
-const sex6 ='male';
-console.log(sex);
-*/
+
+
 
 /****************
  *Variable mutation and type coercion
