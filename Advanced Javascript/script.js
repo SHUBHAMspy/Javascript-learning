@@ -15,17 +15,17 @@ var john={
 */
 
 
-// But if we wanna create multipple objects then there is a need to create a blueprint for all the objects so that it becomes easy to code and the code looks simple 
-//and easy ..... There are many ways  to create objects  the used way is to  create its blueprint using a function constructor() .A blueprint is called 
-//technically a constructor in javascript . In other languages its associated or referred with  classes.
+// But if we wanna create multiple objects then there is a need to create a blueprint for all the objects so that it becomes easy to code and the code looks simple 
+// and easy ..... There are many ways  to create objects  the used way is to  create its blueprint using a function constructor() .A blueprint is called 
+// technically a constructor in javascript . In other languages its associated or referred with  classes.
 
 // now i am  gonna create an object using function constructor which is actually a constructor which is defined as a function or vice versa .A constructor is a
 //set of like rules or predefined properties that all the objects will be defined as stated in the same order with the same names with help of a function
-//as function constructor therefore we can say it as a blueprint of all the objects. and that it  posses a general naming which is related to the other object names and
-//and the first letter of a constructor or blueprint or function constructor is capital. And the function constructor is defined in a same way as function expreesion.
-//!!! this is a blueprint using function  constructor means constructor in the form of function i.e we define a constructor with the help of a function.
+//as function constructor therefore we can say it as a blueprint of all the objects. And that it posses a general naming which is related to the other object names and
+//and the first letter of a constructor or blueprint or function constructor is capital. And the function constructor is defined in a same way as function expression.
+// this is a blueprint using function  constructor means constructor in the form of function i.e we define a constructor with the help of a function.
 
-/*
+
 var Person=function(name,yearOfBirth,job){
 
 	this.name =name;
@@ -34,7 +34,7 @@ var Person=function(name,yearOfBirth,job){
 	
 };
 
-// Using a function Constructor i.e using a function to create a conctructor(or class normally) you are doing 2 things at the same time
+// Using a function Constructor i.e using a function to create a constructor(or class normally) you are doing 2 things at the same time
 // 1. You are creating a constructor(i.e class)
 // 2. And at the same time you are defining a constructor(which normally is a function with the same name as the class in oops to assign the values to the instances or objects) 
 //    So you don't need to define the constructor externally(here constructor means function with same name as the class and in JS constructor is a class).
@@ -47,18 +47,18 @@ Person.prototype.calculateage= function(yearOfBirth){
 Person.prototype.lastName='Pandey';	
 
 var Shubham= new Person('Shubham',1999,'coder');
-john.calculateage();
+Shubham.calculateage();
 
 var Saurabh= new Person('Saurabh',2002,'basketball');
-jane.calculateage();
+Saurabh.calculateage();
 
 var mike= new Person('mike',1956,'retired');
 mike.calculateage();
 
-console.log(john.lastName);
-console.log(jane.lastName);
+console.log(Shubham.lastName);
+console.log(Saurabh.lastName);
 console.log(mike.lastName);
-*/
+
 
 
 
@@ -68,10 +68,10 @@ console.log(mike.lastName);
 /*
 // it is an object that we defined to be as the prototype
 var personProto={                             //<---
-	calculateage:function(){                      //This can be seen as a merger of function 
-		console.log(2019-this.yearOfBirth);       //constructor and prototype presented as an object  
-	}                                             //|
-};                                             //<---   
+	calculateage:function(){                      		//This can be seen as a merger of function 
+		console.log(2019-this.yearOfBirth);       			//constructor and prototype presented as an object  
+	}                                           //		|
+};                                            //<---   
 // 1st way
 var Shubham=Object.create(personProto);
 Shubham.name='Shubham';
@@ -80,40 +80,55 @@ Shubham.job='musician';
 
 // 2nd Way
 var Saurabh=Object.create(personProto,{    //<----
-	name:{value:'Saurabh'},                //     | 
-	yearOfBirth:{value:1999},              //    This can be seen as a merger of the new keyword way  
-	job:{value:'student'}                  //    and constructor instantiation 
-});                                        //     |
-                                           //<----   
+	name:{value:'Saurabh'},                	//     | 
+	yearOfBirth:{value:1999},              //    	This can be seen as a merger of the new keyword way  
+	job:{value:'student'}                  //    	and constructor instantiation 
+});                                      //     |
+                                        //<----   
 */ 
 
 //Primitives vs Objects
-
+// Primitives are passed by value whereas objects are passed by reference.
 /*
 
 //PRIMITIVES
-var a=23;
-var b=a;
-a=46;
+// In JavaScript, a primitive (primitive value, primitive data type) is data that is not an object and has no methods or properties. There are 7 primitive data types:
+// string
+number
+bigint
+boolean
+undefined
+symbol
+null
+
+// All primitives are immutable; that is, they cannot be altered. 
+// It is important not to confuse a primitive itself with a variable assigned a primitive value. The variable may be reassigned to a new value, but the existing value can not be changed in the ways that objects, arrays, and functions can be altered. 
+// The language does not offer utilities to mutate primitive values.
+
+// Primitives have no methods but still behave as if they do. 
+// When properties are accessed on primitives, JavaScript auto-boxes the value into a wrapper object and accesses the property on that object instead. For example, "foo".includes("f") implicitly creates a String wrapper object and calls String.prototype.includes() on that object. This auto-boxing behavior is not observable in JavaScript code but is a good mental model of various behaviors — for example, why "mutating" primitives does not work (because str.foo = 1 is not assigning to the property foo of str itself, but to an ephemeral wrapper object).
+var a = 23;
+var b = a;
+a = 46;
 console.log(a);
 console.log(b);
 
 
 //Objects
 
-var obj1={
+var obj1 = {
 	name:'john',
 	job:'musician'
 };
 
 var obj2=obj1;
-obj1.name='jane';
+obj2.name='jane';
 console.log(obj1);
 console.log(obj2);
 
 //FUNCTIONS
-var age=20;
-var obj ={
+var age = 20;  		// Primitive
+var obj = {				// Object
 	name:'Shubham',
 	job:'student'
 };
@@ -125,7 +140,7 @@ function change(a,b){   // for primitives another copy is created  and updated
 
 change(age,obj);
 console.log(age);
-console.log(obj.job   );
+console.log(obj.job);
 
 */
 
@@ -135,18 +150,18 @@ console.log(obj.job   );
 /*
 A function is a process which takes some input, called arguments, and produces some output called a return value. Functions may serve the following purposes:
 
-Mapping: Produce some output based on given inputs. A function maps input values to output values.
+1.Mapping: Produce some output based on given inputs. A function maps input values to output values.
 
-Procedures: A function may be called to perform a sequence of steps. The sequence is known as a procedure, and programming in this style is known as procedural programming.
+2.Procedures: A function may be called to perform a sequence of steps. The sequence is known as a procedure, and programming in this style is known as procedural programming.
 
-I/O: Some functions exist to communicate with other parts of the system, such as the screen, storage, system logs, or network.
+3.I/O: Some functions exist to communicate with other parts of the system, such as the screen, storage, system logs, or network.
 
- Functional programming is the process of building software by composing pure functions, avoiding shared state, mutable data, and side-effects. 
- Functional programming is declarative rather than imperative, and application state flows through pure functions.
-  Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.
-  Functional programming is a programming paradigm, meaning that it is a way of thinking about software construction based on some fundamental, defining principles (listed above). 
-  Other examples of programming paradigms include object oriented programming and procedural programming.
-  Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code
+Functional programming is the process of building software by composing pure functions, avoiding shared state, mutable data, and side-effects. 
+Functional programming is declarative rather than imperative, and application state flows through pure functions.
+Contrast with object oriented programming, where application state is usually shared and colocated with methods in objects.
+Functional programming is a programming paradigm, meaning that it is a way of thinking about software construction based on some fundamental, defining principles (listed above). 
+Other examples of programming paradigms include object oriented programming and procedural programming.
+Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code
 
 Functional programming is a declarative paradigm, meaning that the program logic is expressed without explicitly describing the flow control.
 
@@ -338,7 +353,7 @@ console.log(fullAges);
 
 /////////////////////
 // Functions returning a functions
-/*
+
 function interviewQuestions(job){
 	if (job==='musician') {
 		return function(name){
@@ -366,9 +381,9 @@ teacherQuestions('Shubham');
 var teacherQuestions=interviewQuestions('designer');
 teacherQuestions('Shubham');
 
-You can simply call the function without storing them itno some variable
+// You can simply call the function without storing them itno some variable
 interviewQuestions('musician')('Shubham');
-*/
+
 
 
 ////////////////////
@@ -390,12 +405,12 @@ game();
 // We can only call IIFE once as it is not intended to be a reusable piece of code
 // The whole intention and motivation behind IIFE is that we want a new scope that will be hidden from outside scope so were we can safely put variables and hide them
 // to obtain data privacy for some data.
-//it is the heart and soul of the modern day Module pattern
+// it is the heart and soul of the modern day Module pattern
 // Consider the part within the first pair of parentheses:
 // (function(){})();....it is a regular function expression.
 // This resolves two things for the intended use case that:
  // 1. since () creates the function as an expression otherwise it will be a declaration without a name and that would result in error
- // 2. Also we haven't ue the var variable to assign it to variable for the purpose of calling it later which will completely violates the purpose IIFEs which is meant to be private.   
+ // 2. Also we haven't used the var variable to assign it to variable for the purpose of calling it later which will completely violates the purpose IIFEs which is meant to be private.   
 
 (function(){
 	 var score=Math.random()*10;
@@ -409,8 +424,8 @@ game();
 
 
 // ES6
-//In order to create Private variables o hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
-//which is created by let and const keywords
+// In order to create Private variables or hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
+// which is created by let and const keywords
 
 {
 	let firstName = "Roy";

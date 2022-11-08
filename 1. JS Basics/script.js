@@ -20,7 +20,7 @@ var job="student";
 console.log(job);
 
 // variables declared with var can be initialized at any time.
-// You can even use the variable before it is declared:
+// You can even use the variable before it is declared:i.e Variables defined with var are hoisted to the top
 sex='male';
 var sex;
 console.log(sex);
@@ -30,13 +30,14 @@ console.log(sex);
 //const is for constants whose value should not be changed(little misleading).
 // const and let are block scoped
 // A block can be created by a function, for loops and if-else statements 
-// A const cannot be reassigned.
+// A const cannot be reassigned and redeclared.
 const firstName6 ='Shubham';
 console .log(firstName);
 // firstName6 = 'zap' Error: Assignment to constant variable
 console.log(firstName6);
 
 const lastName6 ='Pandey';
+// const lastName6 = 'Sharma'  Error:Identifier 'lastName6' has already been declared
 console.log(lastName6);
 
 // An array declared with const cannot be reassigned
@@ -53,15 +54,33 @@ console.log(names6);
 // const sex6;   // Using const without initializing is a syntax error.
 // sex6 = 'male';
 
+//Variables defined with const are also hoisted to the top, but not initialized .
+// and accessible until its declared since, its declared and initialized at the same line.
+//alert (carName); // Using a const variable before it is declared will result in a ReferenceError.
+// const carName = "Volvo";
+
 // let is like normal variables whose value can be changed
 let age6=20;
 console.log(age);
+
+// let cannot be redeclared again in the same block 
+// let age6=23;
+// console.log(age6);
 
 const fullAge6=true;
 console.log(fullAge);
 
 let job6="student";
 console.log(job);
+
+// Let and const variable cannot be redeclared in the same scope
+// const variable cannot be reassigned in the same scope.
+// {
+// 	const x = 2;   // Allowed
+// 	const x = 4;   // Not allowed
+// 	console.log(x);
+// }
+
 
 
 
@@ -309,7 +328,6 @@ if(height||height===0){
 }
 else{
 	console.log('height is undefined.');
-
 }
 
 //Equality operators
@@ -571,12 +589,25 @@ console.log(str.endsWith('of'));
 console.log(str.repeat(2));
 */
 
+// 4. replace()
+// str.replace('S','s') // 'shubham Pandey'
+
+// 5. charAt()
+// str.charAt(1) // 'h'
+
+// 6. replaceAll()
+// str.replaceAll('Shubham','zap') //'zap Pandey'
+
+// 7. indexOf()
+// str.indexOf(' ')  // 7
+
+
 /*************************
 *ARRAYS
 */
-/*
+
 //ES5
-// Arrays are collection of variables(& variables can be of any type)
+// Arrays are collection of elements/variables(& variables can be of any type) in contiguous memory location.
 // Initialise  ARRAY
 var names = ['Shubham','Saurabh','Saroj']; // 1st Way
 
@@ -589,28 +620,33 @@ console.log(names.length);   // in JavaScript length is a property and not a met
 names[names.length]='Papa';
 console.log(names);
 
-// dfferent data types
+// different data types
 var Shubham=['Shubham','Pandey',1999,'student',false];
 
 // Methods specific to array in javascript
 
 // 1. push()
+// The push() method adds one or more elements to the end of an array and returns the new length of the array.
 Shubham.push('blue');
 console.log(Shubham);
 
 // 2. unshift()
+// The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
 Shubham.unshift('Mr.');
 console.log(Shubham);
 
 // 3. pop()
+// The pop() method removes the last element from an array and returns that element. This method changes the length of the array.
 Shubham.pop();
 console.log(Shubham);
 
 // 4. shift()
+// The shift() method removes the first element from an array and returns that removed element. This method changes the length of the array.
 Shubham.shift();
 console.log(Shubham);
 
 // 5. indexOf()
+// The indexOf() method returns the first index at which a given element can be found in the array, or -1 if it is not present.
 console.log(Shubham.indexOf('student'));
 console.log(Shubham.indexOf(2001));
 
@@ -633,13 +669,14 @@ var result = [1999,2002,1970,1989].every(function(el){  // you can also use the 
 
 console.log(result);
 
+// Array methods: every(), some(), find(), and findIndex() test the array elements with a predicate returning a truthy value to determine if further iteration is required.
+
+
 // 7. map()
 //The map() method creates a new array with the results of calling a callback function for every array element.
-
-//The map() method calls the provided function once for each element in the calling array array, in order.
+//The map() method calls the provided function once for each element in the calling array , in order.
 
 //Note: map() does not execute the function for array elements without values.
-
 //Note: this method does not change the original array.
 
 // my_array.map(function(item,index,arr) {
@@ -649,9 +686,7 @@ console.log(result);
 //function(currentValue, index, arr): the function with its parameters which is required to run for each element of the array.
 
 //currentValue: the value of the current element.
-
 //index: the index of the current element being processed.
-
 //arr: the array object on which map() is called.
 //thisValue: value to be used as the function’s this value when executing it. “undefined” will be passed if this value is not provided.
 
@@ -701,6 +736,7 @@ console.log(friends5);
 //The slice() method can take 2 arguments:
 //Argument 1: Required. An integer that specifies where to start the selection (The first element has an index of 0). Use negative numbers to select from the end of an array.
 //Argument 2: Optional. An integer that specifies where to end the selection. If omitted, all elements from the start position and to the end of the array will be selected. Use negative numbers to select from the end of an array.
+// (end not included)
 var values = [11,17,18,20,23];
 console.log(values.slice(0,2));
 console.log(values);
@@ -728,7 +764,7 @@ var adults = ages5.filter(el =>{
 });
 console.log(adults);
 
-// 10. fill()
+// 11. fill()
 //The fill() method fills the specified elements in an array with a static value.
 
 //You can specify the position of where to start and end the filling. If not specified, all elements will be filled.
@@ -742,7 +778,7 @@ let friends = ['Shubham','Saurabh','Kush','Dharmendra','Abhinav'];
 friends.fill('Gaurav',2,4);
 console.log(friends);
 
-// 9. from()
+// 12. from()
 //Array.from() lets you create Arrays from:
 
 // .array-like objects (objects with a length property and indexed elements); or
@@ -755,12 +791,43 @@ console.log(Array.from(Shubham[0]));
 
 //Set
 const set = new Set(['foo', 'bar', 'baz', 'foo']);
-Array.from(set);
+console.log(Array.from(set)); 
 // [ "foo", "bar", "baz" ]
 
-// Array methods: every(), some(), find(), and findIndex() test the array elements with a predicate returning a truthy value to determine if further iteration is required.
+// 13.lastIndexOf()
+// The lastIndexOf() method returns the last index at which a given element can be found in the array, or -1 if it is not present.
+// The array is searched backwards, starting at fromIndex.
+// Argument1: searchElement
+// Argument2: The position in the array at which to start searching backwards. Defaults to the array's length minus one (arr.length - 1), causing the whole array to be searched. 
+const fizzbuzz = ['foo', 'bar', 'baz', 'foo','fizz','buzz','fizzbuzz']
+console.log(fizzbuzz.lastIndexOf('foo'));
+console.log(fizzbuzz.lastIndexOf('def'));
 
-*/
+// 14.includes()
+// The includes() method determines whether an array includes a certain value among its entries, returning true or false.
+console.log(years6.includes('2022'));
+
+// 15. join()
+// The join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), separated by commas or a specified separator string.
+// If the array has only one item, then that item will be returned without using the separator.
+let joined = friends.join('-')
+console.log(joined);
+console.log(Shubham.join(' '));
+
+// 16.reverse()
+console.log(fizzbuzz.reverse());
+ 
+// 17. concat()
+// The concat() method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
+let concatenated = years5.concat(ages5);
+console.log(concatenated);
+
+// 18. The some() method tests whether at least one element in the array passes the test implemented by the provided function. 
+// It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. 
+//It doesn't modify the array.
+var result = years5.some((el) => el % 2 == 0 )
+console.log(result);
+
 /******************
  *CODING CHALLENGE 3
  */
@@ -790,13 +857,14 @@ var tipcalculator =  function(bill){ // I expected an immediate result so just r
  /****************************
  *OBJECTS AND PROPERTIES
  */
- /*
  
-// JavaScript allows us to create object without defining its class
+ // Objects is a collection of key-value pairs.
 
+// JavaScript allows us to create object without defining its class
 // This is also called a JSON object(JavaScript Object Notation)
-// It is formed be {}.
-// object literal or JSON.
+// It is formed by {} called object literal or JSON.
+
+// 1.Object Literal syntax
  var Shubham={
  	firstName:'Shubham',
  	lastName:'Pandey',
@@ -805,8 +873,11 @@ var tipcalculator =  function(bill){ // I expected an immediate result so just r
  	job:'student',
  	ismarried:false
  };   
- 
+ // Acessing objects
+ // 1. Dot notation
  console.log(Shubham.firstName);
+
+ // 2. Bracket Notation
  console.log(Shubham['ismarried']);
  var x='birthyear';
  console.log(Shubham[x]);
@@ -816,17 +887,17 @@ var tipcalculator =  function(bill){ // I expected an immediate result so just r
  Shubham['ismarried']=true;
  console.log(Shubham);
 
- //new  object syntax
+ //2. new  object syntax
  var Shubham= new Object();
  Shubham.firstName='Shubham',
  Shubham['lastName']='Pandey',
  console.log(Shubham);
-*/
+
 
 /***********************
 *objects and methods
 */
-/*
+
 var Shubham={
  	firstName:'Shubham',
  	lastName:'Pandey',
@@ -843,7 +914,7 @@ var Shubham={
  };
 Shubham.calculateage();
 console.log(Shubham);
-*/
+
 
 /***************************
 *CODING CHALLENGE 4
@@ -942,7 +1013,7 @@ for (var i = 0; i < Shubham.length; i++) {
  } 
  */
 
-/*
+
  // For Each loop
  // technically it is not a loop it is a method in the array object, it is a method with the working and functionality of a for each loop 
 //  The forEach() method executes a provided function once for each array element.
@@ -961,10 +1032,10 @@ data.forEach(function(el){
 })
 
 //ES6
-data.forEach((el) =>(console.log(el);))
-*/	
+data.forEach((el) =>(console.log(el)))
+	
 
-/*
+
 // The For/Of Loop
 // The JavaScript for/of statement loops through the values of an iterable objects.
 // for/of lets you loop over data structures that are iterable such as Arrays, Strings, Maps, NodeLists, and more.
@@ -979,7 +1050,7 @@ for(const value of platforms){
 }
 
 // for/in loop
-// for..in iterates over all enumerable property keys of an object
+// for..in iterates over all enumerable property/keys of an object
 let socialmedia = {
 	fb: "Facebook",
 	ig: "Instagram",
@@ -988,9 +1059,9 @@ let socialmedia = {
 };
 
 for(const key in socialmedia){
-	console.log(socialmedia[key]);
+	console.log(key);
 }
-*/
+
 
  /*********************************
  *CODING CHALLENGE 5
@@ -1085,7 +1156,7 @@ else{
   Spread Operator
 */
 
-/*
+
 // The spread operator is a new addition to the set of operators in JavaScript ES6. 
 // It takes in an iterable (e.g an array or a string) and expands it into individual elements.
 // Using this operator makes the code concise and enhances its readability.
@@ -1140,7 +1211,7 @@ console.log(newWage);
 //However, an array can be easily used with new thanks to spread syntax:
 let dateFields = [2020, 0, 1];  
 let d = new Date(...dateFields);
-*/
+
 
 
 /*****************************
