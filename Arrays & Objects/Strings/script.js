@@ -208,7 +208,7 @@ function countPalindromes(string) {
 }
 
 
-// Longest Substring with k distinct characters
+//* Longest Substring with k distinct characters
 // Input: String="araaci", K=2
 // Output: 4
 
@@ -275,7 +275,108 @@ function longestSubstringWithDistinctCharactersSliding(str,k) {
 console.log(longestSubstringWithDistinctCharactersSliding('araaci',2));
 console.log(longestSubstringWithDistinctCharactersSliding('cbbebi',3));
 
+//* Longest substring with no repeat substring
+// O(n2) and O(n)
+function longestSubstringWithNorepeatCharacters(string) {
+  // find all the possible substring
+  // calculate/keep account of all the characters in a substring
+  // select only those substring having distinct characters and calculate their length
+  // compare length of such strings.
+  let maxLength = 0;
+  for (let i = 0; i < string.length; i++) {  // consider
+    let map = {}   // reinitialization every time
+    for (let j = i; j < string.length; j++) { // constitute
+      let hasDistinct = true
+      if(Object.keys(map).includes( string.charAt(j))) map[string.charAt(j)] += 1
+      else {
+        map[string.charAt(j)] = 1
+      }
+      // console.log(map);
+      // console.log(Object.values(map));
+      for (let value of Object.values(map)) {
+        if(value >= 2) hasDistinct = false
+      }
+      if(hasDistinct) maxLength = Math.max(maxLength,j-i+1)
+    }
+  }
+  return maxLength
+}
+console.log(longestSubstringWithNorepeatCharacters('aabccbb'));
+console.log(longestSubstringWithNorepeatCharacters("abbbb") );
+console.log(longestSubstringWithNorepeatCharacters("bbbbb") );
+console.log(longestSubstringWithNorepeatCharacters("abccde"));
 
+// O(n)
+function longestSubstringWithNorepeatCharactersSliding(string) {
+  let maxLength = 0;
+  let map = {}   
+  let i = 0;
+  for (let j = 0; j < string.length; j++) {  // consider
+    while(Object.keys(map).includes( string.charAt(j))) {  // previous constitution has value or not
+      console.log(Object.keys(map));
+      map[string.charAt(i)] -= 1
+    
+      if(map[string[i]] == 0) {
+        delete map[string[i]]
+      }
+      
+      i++;
+    }
+   
+    map[string.charAt(j)] = 1
+    
+    // console.log(map);
+    // console.log(Object.values(map));
+    // for (const value of Object.values(map)) {
+    //   if(value >= 2) hasDistinct = false
+    // }
+    // if(hasDistinct) 
+    maxLength = Math.max(maxLength,j-i+1)
+    
+  }
+  return maxLength
+}
+console.log(longestSubstringWithNorepeatCharactersSliding('aabccbb'));
+console.log(longestSubstringWithNorepeatCharactersSliding("abbbb") );
+console.log(longestSubstringWithNorepeatCharactersSliding("bbbbb") );
+console.log(longestSubstringWithNorepeatCharactersSliding("abccde"));
+
+//* longest substring having the same letters after replacement.
+function sameLetterSubstringAfterReplacement(string,k) {
+  // constitute substring of more than k letters
+  // keep account of duplicate characters by hashmap
+  // for each substring constituted find/select most repeating character
+  
+  let maxLength = 0;
+  for (let i = 0; i < string.length; i++) { // for condidering each substring
+    let map = {}
+    let mostrepeated = 0;
+    for (let j = i; j < string.length; j++) {  // for constituting string
+      if(Object.keys(map).includes(string[j])) map[string[j]] += 1
+      else {
+        map[string.charAt(j)] = 1
+      }
+      for (let value of Object.values(map)) {
+         mostrepeated = Math.max(mostrepeated,value)
+      }
+      
+      // console.log('highest'+mostrepeated);
+      // console.log((j - i + 1) - mostrepeated);
+      if((j - i + 1) - mostrepeated <= k) maxLength = Math.max(maxLength,j-i+1) 
+      else if((j - i + 1) - mostrepeated === 0) maxLength = Math.max(maxLength,j-i+1) 
+      //console.log(maxLength);     
+    }
+    
+  }
+  return maxLength;
+}
+console.log(sameLetterSubstringAfterReplacement('aabccbb',2));
+console.log(sameLetterSubstringAfterReplacement("abbcb",1));
+console.log(sameLetterSubstringAfterReplacement("abccde",1));
+console.log(sameLetterSubstringAfterReplacement("abba",2));
+console.log(sameLetterSubstringAfterReplacement("aababba",1));
+console.log(sameLetterSubstringAfterReplacement("aaaa",2));
+console.log(sameLetterSubstringAfterReplacement("abbb",2));
 //* remove character from string
 function removeCharacter(string) {
   if(string === '' || string === 'x') return ''
@@ -352,6 +453,46 @@ console.log(atoi("-91283472332"));
 // function atoi(s) {
 //   if(s === '') return 0
 // }
+//* Check if two strings are Anagrams
+function checkAnagram(str1,str2) {
+  if(str1 === '' || str2 === '' || str2.length !== str1.length) return false
+  console.log(str1);
+  console.log(str2);
+  let characterMap = {}
+  for (let i = 0; i < str2.length; i++) {
+    if(Object.keys(characterMap).includes(str1.charAt(i))){
+      characterMap[str1.charAt(i)] +=1
+    }
+    else characterMap[str1.charAt(i)] = 1
+  }
+  for (let j = 0; j < str2.length; j++) {
+    if(Object.keys(characterMap).includes(str2.charAt(j)) && Object.keys(characterMap).includes(str2.charAt(j))){
+      characterMap[str2.charAt(j)] -=1
+    }
+    else characterMap[str2.charAt(j)] = 1 
+  }
+  
+  //console.log(characterMap);
+  for (const value of Object.values(characterMap)) {
+    if(value !== 0) return false
+  }
+  return true
+}
+//console.log(checkAnagram('aabc','baca'));
+
+//*Find all anagrams in a string.
+function findAllAnagrams(s,p) {
+  let startIndices = []
+  for (let i = 0; i <= s.length - p.length; i++) {  // O(s.length)
+    if(checkAnagram(p,s.substring(i,i+p.length))) startIndices.push(i)
+  }
+  return startIndices
+}
+console.log(findAllAnagrams("cbaebabacd","abc"));
+console.log(findAllAnagrams("cbaebabaacd","aabcd"));
+console.log(findAllAnagrams("cbaebabacd","acd"));
+console.log(findAllAnagrams("baa","aa"));
+console.log(findAllAnagrams("aa","bb"));
 
 //* Find if a string is substring of another or not
 // string1: "Shubham"
@@ -390,6 +531,7 @@ function generateALLSubstrings(string) {
 console.log(generateALLSubstrings("abcd"));
 
 //* Find all Subsequences
+// This is followong bactracking ideology.
 function generateSubsequences(string) {
   let subsequences = []
   getSubsequences(string,"",0,subsequences)
@@ -408,6 +550,32 @@ function getSubsequences(string,subsequence,i,subsequences) {
   
 }
 console.log(generateSubsequences("abcd"));
+
+// b) generateSubsequence
+// This is following recursive ideology.
+function generateSubsequences2(string) {
+  return getSubsequences2(string);
+}
+function getSubsequences2(string) {
+  let answer = [];  // this will be created every time this function is called
+
+  // Base Case
+  if(string === ''){
+    // subsequences.push(string)
+    return [string]
+  } 
+
+  // Recursive Step
+  let smallerProblem = string.substring(1) //smaller problem
+  let smallerResult = getSubsequences2(smallerProblem)
+  answer.push(...smallerResult);
+  for (let i = 0; i < smallerResult.length; i++) {
+    answer.push(string.charAt(0) + smallerResult[i])
+  }
+  return answer
+}
+console.log(generateSubsequences2('bcd'));
+
 
 
 // Time Convert

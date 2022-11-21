@@ -265,9 +265,76 @@ console.log(mergeIntervals([[1,4],[1,5]]));
 
 // Optimized 
 // As intervals are times and are meant to be consecutive though they might overlap so we need to sort them first.
-function mergeIntervals(intervals) {
-  
+function mergeIntervalsOptimized(intervals) {
+  //let modifiedIntervals = [];
+  let combinedVal;
+    if(intervals.length < 2) modifiedIntervals.push(intervals[0])
+    intervals.sort((a,b) => a[0] - b[0])
+    for (let i = 0; i < intervals.length - 1; ) {
+      let currentInterval = intervals[i];
+      let nextInterval= intervals[i + 1];
+      
+      // let modifiedInterval;
+      // modifiedInterval[0] = element[0];
+      // modifiedInterval[1] = Math.max(element[1],nextInterval[0])
+      
+      // Many cases that can exist
+      // 1.Current interval completely overlaps with next interval
+      // 2. Current interval and next interval start together but current ends prior i.e next interval completely overlaps
+      // 3. Next interval starts in between current interval
+      // 4. Current and next doesn't overlap
+    
+    // currentInterval[0] < nextInterval[0] && currentInterval[1] > nextInterval[0] ||
+    // currentInterval[0] <= nextInterval[0] && currentInterval[1] >= nextInterval[1] ||
+    // currentInterval[0] === nextInterval[0] && currentInterval[1] <= nextInterval[1] ||
+    // currentInterval[0] <= nextInterval[0] &&  currentInterval[1] === nextInterval[0] 
+    // (nextVal[0] <= val[0] && nextVal[1] >= val[0]) ||   
+    console.log(i);  
+    if(
+        (currentInterval[0] <= nextInterval[0] && currentInterval[1] >= nextInterval[0]) || 
+        (currentInterval[1] >= nextInterval[0] && currentInterval[1] >= nextInterval[1]) ||
+        (nextInterval[0] <= currentInterval[1] && nextInterval[1] >= currentInterval[1])
+        ){
+        combinedVal = [Math.min(currentInterval[0],nextInterval[0]),Math.max(currentInterval[1],nextInterval[1])]
+        intervals.splice(i,2,combinedVal)
+        i =-1 
+      } 
+      //console.log(i);
+      i++
+    
+    }     
+  return intervals;
 }
+console.log(mergeIntervalsOptimized([[1,3],[2,6],[8,10],[15,18]]));
+// console.log(mergeIntervalsOptimized([[1,4],[4,5]]));
+// console.log(mergeIntervalsOptimized([[1,4],[5,6]]));
+// console.log(mergeIntervalsOptimized([[1,4],[2,3]]));
+// console.log(mergeIntervalsOptimized([[1,4],[0,4]]));
+// console.log(mergeIntervalsOptimized([[1,4],[1,5]]));
+console.log(mergeIntervalsOptimized([[1,4],[0,2],[3,5]]));
+
+// Insert Interval
+function mergeIntervalSDifferent(intervals) {
+  let modifiedIntervals = [];
+  if(intervals.length < 2) modifiedIntervals.push(intervals[0])
+  intervals.sort((a,b) => a[0] - b[0])
+  console.log(intervals);
+  let currentInterval = intervals[0];
+  for (let i = 1; i < intervals.length; i++) {
+    let nextInterval= intervals[i];
+    if (currentInterval[1] >= nextInterval[0]) {
+      currentInterval[1] = Math.max(nextInterval[1],currentInterval[1])
+      
+    }
+    else{
+      modifiedIntervals.push(currentInterval)
+      currentInterval = nextInterval
+    }
+  }
+  modifiedIntervals.push(currentInterval)
+  return modifiedIntervals;
+}
+console.log(mergeIntervalSDifferent([[1,3],[2,6],[8,10],[15,18]]));
 // Longest Common Prefix
 function longestCommonPrefix(array) { //brute force
   let lcp = "";
@@ -467,9 +534,220 @@ console.log(fourSum([1,0,-1,0,-2,2],0));
 console.log(fourSum([2,2,2,2,2,2],8));
 console.log(fourSum([-2,-1,-1,1,1,2,2],0));
 
+//* Trapping Rain Water
+function trappingRainWater(height) {
+  let total = 0;
+  // Initial logic is to find water present or stored at each index and add that to total water.
+  // But water can be stored only if their is captivation to hold it.
+  // So inorder to find how much  water present at an index we need to ensure there is captivation first
+  // For that we need to find left captivation and  right captivation.
+  for (let i = 0; i < height.length; i++) {
+    let maxLeft = 0;
+    let maxRight = 0;
+    for (let index = i; index >= 0; index--) {
+      maxLeft = Math.max(height[index], maxLeft);
+      //console.log(maxLeft);
+    }
+    //console.log('maxLeft:' + maxLeft);
+    
+    for (let index = i; index < height.length; index++) {
+      maxRight = Math.max(height[index], maxRight);
+      //console.log(maxRight);
+    }
+    //console.log('maxRight:' + maxRight);
+
+    total += Math.min(maxLeft, maxRight) - height[i];
+    //console.log("total now:"+ total);
+    
+  }
+  return total;
+}
+
+console.log(trappingRainWater([0,1,0,2,1,0,1,3,2,1,2,1]));
+console.log(trappingRainWater([4,2,0,3,2,5]));
+  // for (let index = 0; index < input.length; index++) {
+  //   if (input[index] !== 0) {
+  //      let j = index + 1;
+  //      console.log(j);
+
+  //     let units = 0;
+  //     for (let j = index + 1; j < input.length && input[j] === 0; j++) {
+  //       console.log(j);
+  //       units += 1;
+  //       console.log(units);
+  //       if (input[index] <= input[j]) {
+  //         total += units * input[index];
+  //         console.log(total);
+  //       } else {
+  //         total += units * input[j];
+  //         console.log(total);
+  //       }
+  //     }
+      // while (input[j] !== 0) {
+      //   units += 1;
+      //   console.log(units);
+
+      //   j++;
+      // }
+  //   }
+  // }
 
 
-// Recursion and Arrays
+//* Binary Search
+//Input: [1, 2, 3, 4, 5, 6, 7], key = 5
+
+function binarySearch(nums, target) {
+  let start = 0;
+  let end = nums.length - 1;
+  let mid;
+  while(start <= end){
+    mid = Math.floor(start + (end - start)/2)
+    
+    if(nums[mid] === target) return mid;
+    if(nums[start] < nums[end]){  // ascending
+      
+      if(nums[mid] < target) start = mid + 1
+      else if ( target < nums[mid] ) end = mid - 1
+    }
+    else{   // descending
+      if(nums[mid] < target) end = mid - 1
+      else if ( target < nums[mid] ) start = mid + 1
+    }
+  }
+  return -1
+}
+
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7],5));
+console.log(binarySearch([10, 6, 4],10));
+//console.log(binarySearch([-1,0,3,5,9,12],2));
+
+//*   Maximum in rotated and sorted array  
+// Since itn is rotated consider it to be a circular array or behaving as circular array
+// Because a circle can be rotated on a axis/pivot , therefore rotation has made it to be thought as a circular array
+// And iterating into circular array is done by (i + 1) % n 
+function maximumInRotatedAndSorted(nums) {   // Bsed on bitonic array
+  let start = 0;
+  let end = nums.length -1;
+  let mid;
+  if(nums[start] < nums[end]) return Math.max(nums[start],nums[end])
+  while (start <= end) {
+    // mid should be the minimum
+    mid = Math.floor(start + (end - start)/2) 
+    console.log('mid' + mid);
+    console.log(nums[mid]);
+    console.log((mid + 1) % nums.length );
+    console.log((mid + nums.length-1) % nums.length);
+    if (nums[mid] > nums[(mid + 1) % nums.length] && nums[mid] > nums[(mid + nums.length-1) % nums.length] ) {
+      // console.log('mid' + mid);
+      return nums[mid];
+    }
+    else if(nums[mid] >  nums[start]) start = mid + 1
+    else end = mid - 1;
+  }
+}
+console.log(maximumInRotatedAndSorted([4,5,6,1,2,3]));
+console.log(maximumInRotatedAndSorted([11,13,15,17]));
+console.log(maximumInRotatedAndSorted([2,1]));
+console.log(maximumInRotatedAndSorted([3,1,2]));
+//console.log(maximumInRotatedAndSorted([10,15,1,3,8]));
+
+//* Minimum in rotated and sorted Array
+function minimumInRotatedAndSorted(nums) {
+  let start = 0;
+  let end = nums.length -1;
+  let mid;
+  if(nums.length === 1) return nums[0] 
+  while (start <= end) {
+    mid = Math.floor(start + (end - start)/2)
+    if(nums[mid] < nums[(mid + 1) % nums.length] && nums[mid] < nums[(mid + nums.length-1) % nums.length]) {
+      return nums[mid]
+    }
+    else if(nums[mid] < nums[end]) end = mid - 1
+    else start = mid + 1;
+  }
+}
+console.log(minimumInRotatedAndSorted([4,5,6,1,2,3]));
+console.log(minimumInRotatedAndSorted([11,13,15,17]));
+console.log(minimumInRotatedAndSorted([2,1]));
+console.log(minimumInRotatedAndSorted([3,1,2]));
+//* Find in rotated and sorted Array
+// Always remember the most important condition for applying search or to be searched by binary search: Array needs to be sorted
+// mid might not be exactly dividing the array into two sorted halves.
+ function findInRotatedAndSorted(nums,target) {
+  let start = 0;
+  let end = nums.length -1;
+  let mid;
+  let min = nums.indexOf(minimumInRotatedAndSorted(nums))
+
+  console.log('min' + min);
+  if(nums[min] === target) return min;
+  else if(nums[min] < target && target <= nums[nums.length - 1]) start = min + 1
+  else end = min - 1
+
+  while (start <= end) {
+    mid = Math.floor(start + (end - start)/2)
+    if(nums[mid] === target) return mid;
+    else if(target < nums[mid] ) end = mid - 1
+    else start = mid + 1 
+  }
+  return -1;
+ }
+ console.log(findInRotatedAndSorted([4,5,6,7,0,1,2],0));
+ console.log(findInRotatedAndSorted([4,5,6,7,0,1,2],3));
+ console.log(findInRotatedAndSorted([1],0));
+ console.log(findInRotatedAndSorted([4,5,7,9,10,-1,2],10));
+ console.log(findInRotatedAndSorted([10,15,1,3,8],15));
+
+//* Single Element in a sorted array
+// Input: nums = [1,1,2,3,3,4,4,8,8]
+// Output: 2
+function name(nums) {
+  
+}
+
+//* Buy and Sell Stock
+// O(n2) approach
+function buyAndSellStock(nums) {
+  let maximumProfit = 0
+  let maxProfitDay;
+  let maxProfitBuy;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j < nums.length; j++) {
+      let profit = nums[j] - nums[i]
+      if(profit > maximumProfit){
+        maximumProfit = profit
+        maxProfitBuy = nums[i]
+        maxProfitDay = j
+      }
+    }
+  }
+  console.log('maximumProfit'+maximumProfit);
+  console.log([maxProfitBuy,nums[maxProfitDay]]);
+  return maximumProfit
+}
+console.log(buyAndSellStock([100,180,260,310,40,535,695]));
+console.log(buyAndSellStock([7,1,5,3,6,4]));
+console.log(buyAndSellStock([7,6,4,3,1]));
+
+//* Jump Game
+// So we have to jump in a way to maximize the distance and minimize the no of jumps.
+// So at each step we greedly choose jump with maximum distance to reach the end.
+// At every step we choose to reach the end by choosing maximum distance jump.
+function jumpGame(nums) {
+  let reachable = 0  // because initially we are at 0 or we have reached at 0
+  for (let i = 0; i < nums.length; i++) {
+    if(reachable >= nums.length - 1) return true
+    if(nums[i] + i > reachable ) reachable = nums[i] + i
+    //console.log(reachable);
+  }
+  return false
+}
+console.log(jumpGame([2,3,1,1,4]));
+console.log(jumpGame([3,2,1,0,3]));
+
+
+
+//* Recursion and Arrays
 
 //* Sum of array integrs
 // Input: [1,5,7,-2]
@@ -516,13 +794,68 @@ console.log(checkSorted([2,4,1,6,5]));
 console.log(checkSorted([1,2,3,4]));
 
 //* Missing Number
-function findMissingNumber(nums) {
-  for (let i = 0; i < nums.length; i++) {
-    if(i != nums[i])
+// function findMissingNumber(nums) {
+//   for (let i = 0; i < nums.length; i++) {
+//     if(i != nums[i])
     
     
-  }
+//   }
+// }
+
+//* Combinations
+// a) With bactracking ideology
+function combinations(n,k) {
+  let combinations = []
+  getCombinations(n,1,[],combinations,k)
+  return combinations;
 }
+function getCombinations(n,current,combination,combinations,k) {
+  if(k === combination.length){
+    combinations.push(combination)
+    return
+  }  
+  if(current > n) return
+ 
+  getCombinations(n,current + 1,combination,combinations,k)  // exclude
+  // combination.push(current)  // this returns length
+  console.log(combination);                 
+  getCombinations(n,current + 1,combination.concat(current),combinations,k)   // include
+}
+// console.log([].push(2) + 'ans');
+// console.log([].concat(2));
+console.log(combinations(3,2));
+
+// b) With recursive mentality
+function combinations2(n,k) {
+  return getCombinations2(1,n,k)
+}
+
+function getCombinations2(current,n,k) {
+  let combinations = []
+  // Base Case
+  if(k < 1) {
+    return combinations
+  }
+  if(current <= n) {
+
+    for (let i = current; i <= n-k+1; i++) {
+      console.log('current' + current);
+      // Recursive case
+      let smallCombinations = getCombinations2(i+1,n,k-1)
+      console.log(smallCombinations);
+      if(smallCombinations.length){
+        for (let combination of smallCombinations) {
+          combinations.push([i,...combination])
+        }
+      }
+      else combinations.push([i])
+      
+    }
+  }
+  return combinations
+}
+console.log(combinations2(3,2));
+
 // Subsets
 
 // Every element is a subset in itself
