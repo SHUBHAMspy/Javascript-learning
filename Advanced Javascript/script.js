@@ -423,9 +423,9 @@ game();
 })(10);
 
 
-// ES6
-// In order to create Private variables or hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
-// which is created by let and const keywords
+ ES6
+In order to create Private variables or hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
+which is created by let and const keywords
 
 {
 	let firstName = "Roy";
@@ -492,11 +492,11 @@ Point-free style is a style of programming where function definitions do not mak
 we can’t use the function keyword, and we can't use an arrow function (=>) because those require any formal parameters to be declared (which would reference its arguments). 
 So what we'll need to do instead is call a function that returns a function.
 
-// Closure Property
-// An inner function has always access to the variables and parameters of its outer function,
-// even after the outer function has returned.
-// Closure makes currying possible in JavaScript. 
-// It’s ability to retain the state of functions already executed, gives us the ability to create factory 🏭 functions — functions that can add a specific value to their argument.
+//* Closure Property
+An inner function has always access to the variables and parameters of its outer function,
+even after the outer function has returned.
+Closure makes currying possible in JavaScript. 
+It’s ability to retain the state of functions already executed, gives us the ability to create factory 🏭 functions — functions that can add a specific value to their argument.
 
 
 
@@ -798,35 +798,219 @@ let[age,yearinreteirement] = calAgeUntillRetirement(1999);
 console.log(age);
 console.log(yearinreteirement);
 
+// Features:
+// 1. JSX: It is an syntax extension to Javscript.The JSX gets converted to many 
+// React.createElement() calls.It describes your UI.
+// 2. Unidirectional flow: React is based on Flux architecture, data should flow from parent to the child or parent component to child component.
+
+// 3.Virtual Dom:  Virtual dom is basically a JS object that represents the real dom in memory it is actually the  tree of elements which decribes the element tree.
+
+// 4.Declarative & Component Based: React allows you to declaratively describe you UI, using component based architecture.
+
+// 5. Reuseability & Composition: React components can be reused to form bigger components and two different components can be composed together to form the desired UI.
+
+// React is a JS library for building UI with component based architecture. Components are the building blocks of react. A component is a class or a function that takes in input as props and returns  
+// an element tree. If it is a function the output is the return value of the function, if it is a class the output is the return value of the render method. 
+// Since, components are functions and functions are present everywhere and used during the entire course of web application development they are reusable and independent pieces of code and components provide exactly the same nature and can be used in isolation or in composition with other components just like function composition  to form the complete UI for different screens.
+// A component can be a function or a class instance.
+
+// Functional Component:
+// 1.If it is a function then output is the return value of that function.
+// 2. There is no render method.
+// 3. Major difference is functional components are stateless, they just take props and render the data
+// 4. Normal lifecycle methods (componentDidMount or componentDidUpdate) can't be used in function components.
+// 5. Functional components are easier to write and test because they are functions.
+
+// Class Component:
+// 1. In class component, the output is the return value of the render() method.
+// 2. They contain state and associated logic together therefore they are called stateful.
+// 3. They update state using lifecycle methods like componentDidUpdate or componentDidMount.
+// 4.  Although class components are just JS ES6 classes but they can be lengthy to write and harder to test at times.
+// 5. Render method returns the UI
+
+// We can you use any at times depends on our requirements, like you have to use questions like 
+// do my component to store some state then you can implement it with class components or otherwise you can did too with functional components with help of usestate hooks.
+// Also we have to keep in mind that function components are easier to implement so code complexity also matters.
+
+// 1.Memoization is a technique or methodology that is used to cache the results of expensive function to improve the performance of the function execution.
+// 2. Memoization can be done on process that are repetitive and heavy on computing.
+
+// 3.Time and memory are two important resources in computing. To save on time and memory caching is done and an already cached value is returned.
+// 4. A cache is simply a temporary storage which is to store data for utilizing afterwards.
+
+/* Debouncing and Throttling
+********************************/
+// Throttling and debouncing are two ways to optimize event handling.
+// Event is an action that occurs in the system. In front-end development that system is usually a browser.
+// For example, when you resize a browser window the "resize" event is fired, and when you click on a button the "click" event is. We are interested in events to attach our own logic to them. That logic is represented as a function that is called a handler function (because it handles the event). Such handler functions may handle a UI element update on resize, display a modal window upon a button click, or execute an arbitrary logic in response to any event.
+//In JavaScript you can react to events using event listeners. Event listener is a function that listens to the given event on a DOM element and executes a handler function whenever that event occurs.
+
+//? Note: By default, event handler function executes with 1-1 ratio to the event call.
+
+//* Debouncing
+/* ****************/
+// The term debounce comes from electronics. When you’re pressing a button, let’s say on your TV remote, 
+// the signal travels to the microchip of the remote so quickly that before you manage to release the button, it bounces, and the microchip registers your “click” multiple times.
+// To mitigate this, once a signal from the button is received, the microchip stops processing signals from the button for a few microseconds while it’s physically impossible for you to press it again.
+// In JavaScript, the use case is similar. We want to trigger a function, but only once per use case.
+
+// Debounce:
+// 1. Debouncing bunches a series of sequential calls to a function into a single call to that function.It ensures that only one function call is made for an event that is fired multiple times.
+// 2. A debounced function is called after N amount of time has passed since its last call.It reacts to a seemingly resolved state and implies a delay between the event and the handler function call.
+// 3. Use debounce to eventually react to a frequent event.
+// 4. Debounce is useful when we don't want an intermediate state and only want to respond to the end state of an event.
+ 
+// Throttling:
+// 1. Throttling delays executing a function.It will reduce the no of calls to a function for an event that fires multiple times.
+// 2. Throttled function is called once per n amount of time any additional functional calls within the specified time interval is ignored.
+// 3. We can use throttle to consistently react to a frequent event .
+// 4. An intermediate state of event is acceptable in throttling because it is found to a time frame to ensure consistent execution within a time frame.
 
 
 
 
+// Props:
+// 1. Props is short for properties. It is used for passing data between components since, react follows unidirectional flow therefore props are passed from parent to child component.
+// 2. Data from props is read-only and cannot be modified by a component that is receiving from outside i.e props are immutable.
+// 3. In order to get data in props , we need to define prop attribute on child component and get data from parent component.
+// 4. Props do not have to be just data but callbacks can also be passed as props.
+
+// State:
+// 1. State actually refers to the present condition of a system or entity . State and data are confused 
+//     as one and the same thing or that state translates to data. Though data governs the state or 
+//     what state will be. But it is not equal to state. In computer science , state is defined by 
+//      input(here referenced as data), output and the transition.
+// 2. Data can be a data structure(an object) or a single value.It is use to initailize or set a default value when a component mounts.
+// 3. A component can create & manage their own data internally for state. i.e it is private to the component.
+// 4. State can be modified or updated by setState() method and should not be modified directly.
+
+// And because of these differences we have two classes of components:
+// 1. Stateless Components : They have only props and no internal data, their logic revolves around the props they receive.
+// 2. Stateful Components: They have both props as well as internal data to convey the state.
+ 
+// props are used by a component to get data from external environment i.e another component ( pure, functional or class) or a general class or javascript/typescript code
+//states are used to manage the internal environment of a component means the data changes inside the component
+
+// Does React perform a deep compare or a shallow compare in render method?
+
+
+// Advantages:
+// 1. The main advantage of react that i feel that the scripting can be utilized for mobile development as well.
+
+// 2. As React creates virtual dom , this improves performance as JS virtual dom is faster than regular dom.
+
+// 3. Defining ui though components using a declarative syntax, improves readability and debugging.
+// 4. React supports flux architecture , which promotes state immutability i.e it does not allow to modify state directly.
+
+// 5. Separation of concerns and modularity.
+// 6. Scalable ui becuase of composition and reusable component architecture.
+
+// Limitations: 
+// 1. Its sole purpose is also its limitation i.e it only handle view layer of the application. Which was its motivation to separate view from network and business logic.
+
+// 2. It also has some learning curve.
+
+// The roots of this question lies in knowing the difference between Pure Component and Regular Component.
+
+// Pure Component: A component is considered pure if it renders the same output for the same props and state. It is similar to the concept of pure functions in functional programming.
+// Pure functions meet two conditions :
+// 1. Its return value is only determined  by its input values.
+// 2. For the same input it always returns the same output.
+// For this type of component , React provides the PureComponent base class. Class components that extend the React.PureComponent class are treated as pure components.
+
+// Pure Components have some performance improvements and render optimizations since React implements the shouldComponentUpdate() method for them with a shallow comparison for props and state.
+
+// Pure component is similar to Regular components but the only difference between them is that Regular component doesn't implement shouldComponentUpdate() but pure component implements it with a shallow prop and state comparisons.
+// shouldComponentUpdate() only shallowly compares the objects. If these contain complex data structures it may produce false for deeper differences.
+// Shallow comparisons works by checking if two values are equal in case of primitives types like string , numbers and in case of objects it will just check the reference not the values inside that object.  
+//* Memory management in JavaScript
+// JavaScript is one of the so called garbage collected languages. Garbage collected languages help developers manage memory by periodically checking which previously allocated pieces of memory can still be "reached" from other parts of the application. In other words, garbage collected languages reduce the problem of managing memory from "what memory is still required?" to "what memory can still be reached from other parts of the application?". The difference is subtle, but important: while only the developer knows whether a piece of allocated memory will be required in the future, unreachable memory can be algorithmically determined and marked for return to the OS.
+// Non-garbage-collected languages usually employ other techniques to manage memory: explicit management, where the developer explicitly tells the compiler when a piece of memory is not required; and reference counting, in which a use count is associated with every block of memory (when the count reaches zero it is returned to the OS). These techniques come with their own trade-offs (and potential causes for leaks).
+
+// Memory Leaks
+// A memory leak in JavaScript is defined as an increase in application memory consumption over time because allocated objects are not released.
+// i.e type of resource leak that occurs when a computer program incorrectly manages memory allocations in a way that memory that is no longer needed is not released.
+// Leaked Memory can be defined as memory that is not required by an application anymore that for some reason is not returned to the operating system or the pool of free memory. 
+// ? The main cause for leaks in garbage collected languages are unwanted references. To understand what unwanted references are, first we need to understand how a garbage collector determines whether a piece of memory can be reached or not.
+// A memory leak may also happen when an object is stored in memory but cannot be accessed by the running code.
+// Simply put, a memory leak is said to occur whenever inaccessible or unreferenced data exists in memory.
+
+// Mark-and-sweep
+// Most garbage collectors use an algorithm known as mark-and-sweep. The algorithm consists of the following steps:
+
+// The garbage collector builds a list of "roots". Roots usually are global variables to which a reference is kept in code. In JavaScript, the "window" object is an example of a global variable that can act as a root. The window object is always present, so the garbage collector can consider it and all of its children to be always present (i.e. not garbage).
+// All roots are inspected and marked as active (i.e. not garbage). All children are inspected recursively as well. Everything that can be reached from a root is not considered garbage.
+// All pieces of memory not marked as active can now be considered garbage. The collector can now free that memory and return it to the OS.
+// Modern garbage collectors improve on this algorithm in different ways, but the essence is the same: reachable pieces of memory are marked as such and the rest is considered garbage.
+
+// Unwanted references are references to pieces of memory that the developer knows he or she won't be needing anymore but that for some reason are kept inside the tree of an active root. In the context of JavaScript, unwanted references are variables kept somewhere in the code that will not be used anymore and point to a piece of memory that could otherwise be freed.
 
 
 
 
+// Observer Pattern provides a consistent way to define one-to-one dependency between two or more objects so that all the changes made to a certain object can be relayed to all the dependent objects as quickly and simply as possible. 
+// For this purpose it utilizes an object or objects called observer which registers or subscribes with another object called subject which informs the registered observers as soon as it has changed.
+ 
+// The observer design pattern works with two types of actors 
+// 1. Subject: the  object whose status is to be observed over long period of time 
+// 2. Observing objects: That subscribed or wanted to be informed about any changes to the subject.
+
+// Purpose:
+// Without using the observer pattern, the observing objects would have to ask the subject to provide status updates at regular intervals, each individual request would be associated with corresponding computing time as well as necessary hardware resources.
+// The fundamental idea behind observer pattern is to centralize the task of informing. Subject maintains a list which the observers can subscribe/ register to.  In the event of a change, the subject informs the registered observers one after the other .
+
+// Application:
+// 1.It can be used to implementing distributed event handling systems  in event driven software. 
+// 2. It can be used in applications based on components in which many components are dependent on status of one component  
+// 3. A mail delivery system which event based can notify subscribed users about a specific mail etc.
 
 
 
+// Every component in react has a lifecycle that it goes through.
+// Based on this React has categorized the lifecycle of a component into 3 different phases:
+// 1. Mounting
+// 2. Updating
+// 3. Unmounting
+
+// Mounting: Mounting means to put elements into the DOM that involves creating and putting it into the DOM. Mounting phase uses 4 methods to mount a component namely:
+// 1. constructor() : It is called when the component is initiated and it is the best place to initialize our 
+//     state. It takes props as argument and starts by calling super(props)
+// 2. getDerivedStateFromProps(): It is called right before rendering the element in the dom.It takes 
+//     props and state as an argument and returns an derived or updated state.
+// 3. render(): It is the only compulsory method required by react.It is responsible for rendering our 
+//     JSX to DOM.
+// 4. componentDidMount() : This method is called after the component is rendered . It is also used 
+//     to fetch external data through api
+
+// 2. Updating Phase: This is the second phase of the react component lifecycle. A component is updated when there is change in state and props .While updating components react calls these 5 methods inorder namely:
+// 1. getDerivedStateFromProps()
+// 2. shouldComponentUpdate(): It is used when you want your state or props to be updated or not 
+//     basically it checks that rendering should happen or not.It is used for optimization purposes. It 
+//     returns a boolean value .
+// 3. render()
+// 4. getSnapshotBeforeUpdate(): It is called right before updating the DOM.It has access to state 
+//    and props before the update so that you can check what is the value of state and props right 
+//     before update.
+// 5. componentDidUpdate(): It is caled after the component has updated in the dom .It is the best 
+//     place in updating the dom in response to the change of props and state.
+
+// 3. Unmounting: This is the final phase of a react component lifecycle.It occurs when a component 
+//     has been removed from the dom. It has only one method:
+//     1. componentWillUnmount():  It is used for cleanup actions like cancelling api calls , removing 
+//         subcriptions and timers. You cannot use setstate here as the component gets unmounted 
+//         and no re-rendering will happen.
 
 
 
+// Since, everything in JS is object therefore a function is also an object.
+//But in javascript arguments are passed by value but in case of objects this value is object reference and because of this it makes us believe that they are passed by reference. Therefore , function has location of object and therefore any changes made to the object will also reflect to the original object outside function body.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// A small example:
+// function memoizedFibonacci(n,cache) {
+// 	cache = cache || [1,1]
+// 	if(cache[n]) return cache[n]
+// 	return cache[n] = memoizedFibonacci(n-1,cache) + memoizedFibonacci(n-2,cache)
+// }
 
 
 

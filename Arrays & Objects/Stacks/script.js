@@ -1,4 +1,42 @@
 // When we want things orderdly or in a orderly manner then we use stack.
+
+class Stack {
+  constructor(){
+    this.collection = [];
+  }
+
+  push(element){
+    this.collection.push(element);
+  }
+
+  pop(){
+    return this.collection.pop()
+  }
+  
+  peek(){
+    return this.collection[this.collection.length-1]
+  }
+
+  isEmpty(){
+    return this.collection.length === 0
+  }
+
+  size(){
+    return this.collection.length
+  }
+  print(){
+    console.log(this.collection.toString());
+  }
+
+}
+
+const stack = new Stack()
+stack.push(10)
+stack.push(20)
+console.log(stack.peek());
+console.log(stack.isEmpty());
+console.log(stack.size());
+stack.print()
 //* Next greater Element
 
 // Since we are saying to find next greater element then there is possibility to find greater elements in the right.
