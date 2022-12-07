@@ -1,28 +1,41 @@
+// Stacks
 // When we want things orderdly or in a orderly manner then we use stack.
+// A stack is a linear data structure which can be implemented using an array or a linked list.
+// Stack is an abstract data type. It is defined by its behavior rather than being a mathematical model.
+// Stack follows LIFO principle stands for Last in First Out ,meaning the data that was inserted last, is the first data to get removed.
+// Usage: Browser history tracking, undo operation when typing, Call stack in javascript 
 
 class Stack {
   constructor(){
     this.collection = [];
+    this.top = -1
   }
 
-  push(element){
-    this.collection.push(element);
+  push(data){
+    this.top++;
+    this.collection[this.top] = data
   }
 
   pop(){
-    return this.collection.pop()
+    if(this.top === -1) return null
+    else{
+      let data = this.collection[this.top]
+      this.collection[this.top] = null
+      this.top--;
+      return data
+    }
   }
   
   peek(){
-    return this.collection[this.collection.length-1]
+    return this.collection[this.top] || null
   }
 
   isEmpty(){
-    return this.collection.length === 0
+    return this.top === -1
   }
 
   size(){
-    return this.collection.length
+    return this.top + 1
   }
   print(){
     console.log(this.collection.toString());
@@ -31,9 +44,12 @@ class Stack {
 }
 
 const stack = new Stack()
+console.log(stack.peek());
 stack.push(10)
 stack.push(20)
+stack.push(30)
 console.log(stack.peek());
+console.log(stack.pop());
 console.log(stack.isEmpty());
 console.log(stack.size());
 stack.print()
