@@ -1,5 +1,27 @@
 // Fundamental String Questions
 
+// Todo
+//* Reverse A string
+//* Reverse only alphabetical
+//* Check Anagram
+//* Validate Palindrome(Check Palindrome)
+//* Detect Substring in String
+//* Dollar Sign Deletion
+//* Find first non repeating character
+//* Find Duplicate Words
+//* Remove all adjacent duplicates 
+//* Custom Sort String 
+//* Simplyfying absolute paths 
+//* Length of longest palindrome
+//* Length of string compression
+//* Generate all string Permutations
+//* String Breakdown
+//* Convert Number to Words
+//* Longest Palindromic Substring
+//* Text Justification
+//* Longest Substring with no repeat characters
+//* Remove Invalid Parenthesis
+
 //1. Count Words
 // Buit in methods
 function countWords(string) {
@@ -587,4 +609,3 @@ function convertTime(num) {
 console.log(convertTime(45));
 
 // Counting Minutes
-
