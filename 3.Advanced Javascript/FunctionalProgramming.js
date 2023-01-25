@@ -1,148 +1,3 @@
-/********************************************************************************************************************************************************************************************
-                          Advanced JavaScript: Object Oriented Programming and Functional Programming Concepts
-*********************************************************************************************************************************************************************************************
-//FUNCTION CONSTRUCTOR
-
-//Simple creation of OBJECT 
-/*
-var john={
-
-	name:'john',
-	yearOfBirth:'1999',
-	job: 'student'
-};
-
-*/
-
-
-// But if we wanna create multiple objects then there is a need to create a blueprint for all the objects so that it becomes easy to code and the code looks simple 
-// and easy ..... There are many ways  to create objects  the used way is to  create its blueprint using a function constructor() .A blueprint is called 
-// technically a constructor in javascript . In other languages its associated or referred with  classes.
-
-// now i am  gonna create an object using function constructor which is actually a constructor which is defined as a function or vice versa .A constructor is a
-//set of like rules or predefined properties that all the objects will be defined as stated in the same order with the same names with help of a function
-//as function constructor therefore we can say it as a blueprint of all the objects. And that it posses a general naming which is related to the other object names and
-//and the first letter of a constructor or blueprint or function constructor is capital. And the function constructor is defined in a same way as function expression.
-// this is a blueprint using function  constructor means constructor in the form of function i.e we define a constructor with the help of a function.
-
-
-var Person=function(name,yearOfBirth,job){
-
-	this.name =name;
-	this.yearOfBirth = yearOfBirth;
-	this.job = job;
-	
-};
-
-// Using a function Constructor i.e using a function to create a constructor(or class normally) you are doing 2 things at the same time
-// 1. You are creating a constructor(i.e class)
-// 2. And at the same time you are defining a constructor(which normally is a function with the same name as the class in oops to assign the values to the instances or objects) 
-//    So you don't need to define the constructor externally(here constructor means function with same name as the class and in JS constructor is a class).
-//    And this is all able to happen because of the JavaScript syntax to create a class
-
-Person.prototype.calculateage= function(yearOfBirth){
-		console.log(2019-  this.yearOfBirth);
-	}
-
-Person.prototype.lastName='Pandey';	
-
-var Shubham= new Person('Shubham',1999,'coder');
-Shubham.calculateage();
-
-var Saurabh= new Person('Saurabh',2002,'basketball');
-Saurabh.calculateage();
-
-var mike= new Person('mike',1956,'retired');
-mike.calculateage();
-
-console.log(Shubham.lastName);
-console.log(Saurabh.lastName);
-console.log(mike.lastName);
-
-
-
-
-/******************
-*OBJECT.CREATE
-*/
-/*
-// it is an object that we defined to be as the prototype
-var personProto={                             //<---
-	calculateage:function(){                      		//This can be seen as a merger of function 
-		console.log(2019-this.yearOfBirth);       			//constructor and prototype presented as an object  
-	}                                           //		|
-};                                            //<---   
-// 1st way
-var Shubham=Object.create(personProto);
-Shubham.name='Shubham';
-Shubham.yearOfBirth=1999;
-Shubham.job='musician';
-
-// 2nd Way
-var Saurabh=Object.create(personProto,{    //<----
-	name:{value:'Saurabh'},                	//     | 
-	yearOfBirth:{value:1999},              //    	This can be seen as a merger of the new keyword way  
-	job:{value:'student'}                  //    	and constructor instantiation 
-});                                      //     |
-                                        //<----   
-*/ 
-
-//Primitives vs Objects
-// Primitives are passed by value whereas objects are passed by reference.
-/*
-
-//PRIMITIVES
-// In JavaScript, a primitive (primitive value, primitive data type) is data that is not an object and has no methods or properties. There are 7 primitive data types:
-// string
-number
-bigint
-boolean
-undefined
-symbol
-null
-
-// All primitives are immutable; that is, they cannot be altered. 
-// It is important not to confuse a primitive itself with a variable assigned a primitive value. The variable may be reassigned to a new value, but the existing value can not be changed in the ways that objects, arrays, and functions can be altered. 
-// The language does not offer utilities to mutate primitive values.
-
-// Primitives have no methods but still behave as if they do. 
-// When properties are accessed on primitives, JavaScript auto-boxes the value into a wrapper object and accesses the property on that object instead. For example, "foo".includes("f") implicitly creates a String wrapper object and calls String.prototype.includes() on that object. This auto-boxing behavior is not observable in JavaScript code but is a good mental model of various behaviors — for example, why "mutating" primitives does not work (because str.foo = 1 is not assigning to the property foo of str itself, but to an ephemeral wrapper object).
-var a = 23;
-var b = a;
-a = 46;
-console.log(a);
-console.log(b);
-
-
-//Objects
-
-var obj1 = {
-	name:'john',
-	job:'musician'
-};
-
-var obj2=obj1;
-obj2.name='jane';
-console.log(obj1);
-console.log(obj2);
-
-//FUNCTIONS
-var age = 20;  		// Primitive
-var obj = {				// Object
-	name:'Shubham',
-	job:'student'
-};
-
-function change(a,b){   // for primitives another copy is created  and updated
-	a=19;
-	b.job='musician';   // but in case of objects the same reference is passed so any change done through the reference will be resembled on the actual object
-}
-
-change(age,obj);
-console.log(age);
-console.log(obj.job);
-
-*/
 
 /**************************************
   Functional Programming Concepts
@@ -191,7 +46,7 @@ Functional programming favors:
 6. Expressions over statements
 7. Containers & higher order functions over ad-hoc polymorphism
  
-// In order to know what functional programming  means, you have to understand the following core concepts 
+ In order to know what functional programming  means, you have to understand the following core concepts 
  1.  Pure functions
  2. Function composition
  3. Avoid shared state
@@ -298,7 +153,7 @@ Higher order functions are often used to:
 4. Take a list of functions and return some composition of those input functions
 */
 
-/*
+
 //1.Passing Functions as Arguments
 
  // Call Back function
@@ -349,7 +204,7 @@ var rates=arrayCalc(ages,maxHeartRate);
 console.log(rates);
 console.log(ages);
 console.log(fullAges);
-*/
+
 
 /////////////////////
 // Functions returning a functions
@@ -386,11 +241,11 @@ interviewQuestions('musician')('Shubham');
 
 
 
-////////////////////
+/*********************** */
 // IIFE
-/*
 
-// Normal Function
+
+//* Normal Function
 function game(){
      var score=Math.random()*10;
      console.log(score>=5);
@@ -399,7 +254,7 @@ function game(){
 
 game();
 
-// IIFE
+//* IIFE
 
 //It's just an anonymous function that is executed right after it's created,i.e it is been called or invoked right after it's creation
 // We can only call IIFE once as it is not intended to be a reusable piece of code
@@ -423,9 +278,9 @@ game();
 })(10);
 
 
- ES6
-In order to create Private variables or hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
-which is created by let and const keywords
+// ES6
+//In order to create Private variables or hidden variables that are not accessible through outer scopes,You can use block scoping in ES6
+//which is created by let and const keywords
 
 {
 	let firstName = "Roy";
@@ -433,7 +288,7 @@ which is created by let and const keywords
 }
 
 console.log(firstName);
-*/
+
 
 /****************
   Currying
@@ -521,8 +376,8 @@ retirementICELAND(1999);
 //retirement(65)(1999);
 */
 
-////////////////////////
-//BIND CALL & APPLY methods
+/***************************/
+//*BIND CALL & APPLY methods
 
 // Method Borrowing
 //Function borrowing allows us to use the methods of one object on a different object without having to make a copy of that method and maintain it in two separate places. 
@@ -531,7 +386,7 @@ retirementICELAND(1999);
 // And as I mentioned above, function borrowing keeps you from having to write the same function twice and maintain it in two places, which reduces the risk of bugs.
 
 // Using bind ,call and apply we explicitly set this variable on the object for which we want to borrow.
-/*
+
 var john={
 	name:'john',
 	age:20,
@@ -555,7 +410,7 @@ var emily={
 	age:25,
 	job:'musician'
 };
-//Call and apply are pretty interchangeable. Just decide whether it’s easier to send in an array or a comma separated list of arguments.
+//?Call and apply are pretty interchangeable. Just decide whether it’s easier to send in an array or a comma separated list of arguments.
 // Call
 // Call invokes the function and allows you to pass in arguments one by one.
 john.presentation.call(emily,'friendly','night');
@@ -569,7 +424,7 @@ john.presentation.apply(emily,['friendly','afternoon']);
 // Bind helps us to create functions with preset arguments so that we don't have to set them again and again
 // A bind function is basically which binds the context of something and then stores it into a variable for execution at a later stage.
 // Bind will be used if you want your execution context to come later in the picture or you also want to use it afterwards.
-Ex:
+
 
 var car = { 
   registrationNumber: "007",
@@ -579,13 +434,13 @@ var car = {
     console.log(ownerName + ' this is your car ' + '' + this.registrationNumber + " " + this.brand);
   }
 }
-car.displayDetails('Nishant'); // **Nishant this is your car 007 Mercedes**
+car.displayDetails('Nishant'); // Nishant this is your car 007 Mercedes
 
-Let's say i want use this method in some other variable
+//Let's say i want use this method in some other variable
 var car1 = car.displayDetails('Nishant');
 car1(); // undefined
 
-To use the reference of car in some other variable you should use
+//To use the reference of car in some other variable you should use
 var car1 = car.displayDetails.bind(car, 'Nishant');
 car1(); // Nishant this is your car 007 Mercedes
 
@@ -626,7 +481,7 @@ var ages=arrayCalc(yearOfBirth,calculateAge);
 var isFullJapan=arrayCalc(ages,isFull.bind(this,20));
 console.log(ages);
 console.log(isFullJapan);
-*/
+
 
 
 ////////////////////
@@ -726,16 +581,16 @@ next();
 })();
 */
 
-////////////////////////
-// Arrow Function 'lexical' this
+
+//* Arrow Function 'lexical' this
+/********************************* */
 
 //The handling of this is different in arrow functions compared to regular functions.
-
 //In short, with arrow functions there are no binding of this.
-
 //In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
-
 //With arrow functions the this keyword always represents the object that defined the arrow function.
+// Arrow functions shold not be used as methods inside arrow functions.
+// the Gotcha around arrow functions is that the "this" refers to surrounding environment or the lexical environment where the function expression is.
 
 // ES5
 
@@ -798,16 +653,6 @@ let[age,yearinreteirement] = calAgeUntillRetirement(1999);
 console.log(age);
 console.log(yearinreteirement);
 
-// Features:
-// 1. JSX: It is an syntax extension to Javscript.The JSX gets converted to many 
-// React.createElement() calls.It describes your UI.
-// 2. Unidirectional flow: React is based on Flux architecture, data should flow from parent to the child or parent component to child component.
-
-// 3.Virtual Dom:  Virtual dom is basically a JS object that represents the real dom in memory it is actually the  tree of elements which decribes the element tree.
-
-// 4.Declarative & Component Based: React allows you to declaratively describe you UI, using component based architecture.
-
-// 5. Reuseability & Composition: React components can be reused to form bigger components and two different components can be composed together to form the desired UI.
 
 // React is a JS library for building UI with component based architecture. Components are the building blocks of react. A component is a class or a function that takes in input as props and returns  
 // an element tree. If it is a function the output is the return value of the function, if it is a class the output is the return value of the render method. 
@@ -869,46 +714,21 @@ console.log(yearinreteirement);
 
 
 
-// Props:
-// 1. Props is short for properties. It is used for passing data between components since, react follows unidirectional flow therefore props are passed from parent to child component.
-// 2. Data from props is read-only and cannot be modified by a component that is receiving from outside i.e props are immutable.
-// 3. In order to get data in props , we need to define prop attribute on child component and get data from parent component.
-// 4. Props do not have to be just data but callbacks can also be passed as props.
+
 
 // State:
 // 1. State actually refers to the present condition of a system or entity . State and data are confused 
 //     as one and the same thing or that state translates to data. Though data governs the state or 
 //     what state will be. But it is not equal to state. In computer science , state is defined by 
 //      input(here referenced as data), output and the transition.
-// 2. Data can be a data structure(an object) or a single value.It is use to initailize or set a default value when a component mounts.
-// 3. A component can create & manage their own data internally for state. i.e it is private to the component.
-// 4. State can be modified or updated by setState() method and should not be modified directly.
 
-// And because of these differences we have two classes of components:
-// 1. Stateless Components : They have only props and no internal data, their logic revolves around the props they receive.
-// 2. Stateful Components: They have both props as well as internal data to convey the state.
- 
-// props are used by a component to get data from external environment i.e another component ( pure, functional or class) or a general class or javascript/typescript code
-//states are used to manage the internal environment of a component means the data changes inside the component
+
+
 
 // Does React perform a deep compare or a shallow compare in render method?
 
 
-// Advantages:
-// 1. The main advantage of react that i feel that the scripting can be utilized for mobile development as well.
 
-// 2. As React creates virtual dom , this improves performance as JS virtual dom is faster than regular dom.
-
-// 3. Defining ui though components using a declarative syntax, improves readability and debugging.
-// 4. React supports flux architecture , which promotes state immutability i.e it does not allow to modify state directly.
-
-// 5. Separation of concerns and modularity.
-// 6. Scalable ui becuase of composition and reusable component architecture.
-
-// Limitations: 
-// 1. Its sole purpose is also its limitation i.e it only handle view layer of the application. Which was its motivation to separate view from network and business logic.
-
-// 2. It also has some learning curve.
 
 // The roots of this question lies in knowing the difference between Pure Component and Regular Component.
 
@@ -923,6 +743,7 @@ console.log(yearinreteirement);
 // Pure component is similar to Regular components but the only difference between them is that Regular component doesn't implement shouldComponentUpdate() but pure component implements it with a shallow prop and state comparisons.
 // shouldComponentUpdate() only shallowly compares the objects. If these contain complex data structures it may produce false for deeper differences.
 // Shallow comparisons works by checking if two values are equal in case of primitives types like string , numbers and in case of objects it will just check the reference not the values inside that object.  
+
 //* Memory management in JavaScript
 // JavaScript is one of the so called garbage collected languages. Garbage collected languages help developers manage memory by periodically checking which previously allocated pieces of memory can still be "reached" from other parts of the application. In other words, garbage collected languages reduce the problem of managing memory from "what memory is still required?" to "what memory can still be reached from other parts of the application?". The difference is subtle, but important: while only the developer knows whether a piece of allocated memory will be required in the future, unreachable memory can be algorithmically determined and marked for return to the OS.
 // Non-garbage-collected languages usually employ other techniques to manage memory: explicit management, where the developer explicitly tells the compiler when a piece of memory is not required; and reference counting, in which a use count is associated with every block of memory (when the count reaches zero it is returned to the OS). These techniques come with their own trade-offs (and potential causes for leaks).
@@ -966,39 +787,6 @@ console.log(yearinreteirement);
 
 
 
-// Every component in react has a lifecycle that it goes through.
-// Based on this React has categorized the lifecycle of a component into 3 different phases:
-// 1. Mounting
-// 2. Updating
-// 3. Unmounting
-
-// Mounting: Mounting means to put elements into the DOM that involves creating and putting it into the DOM. Mounting phase uses 4 methods to mount a component namely:
-// 1. constructor() : It is called when the component is initiated and it is the best place to initialize our 
-//     state. It takes props as argument and starts by calling super(props)
-// 2. getDerivedStateFromProps(): It is called right before rendering the element in the dom.It takes 
-//     props and state as an argument and returns an derived or updated state.
-// 3. render(): It is the only compulsory method required by react.It is responsible for rendering our 
-//     JSX to DOM.
-// 4. componentDidMount() : This method is called after the component is rendered . It is also used 
-//     to fetch external data through api
-
-// 2. Updating Phase: This is the second phase of the react component lifecycle. A component is updated when there is change in state and props .While updating components react calls these 5 methods inorder namely:
-// 1. getDerivedStateFromProps()
-// 2. shouldComponentUpdate(): It is used when you want your state or props to be updated or not 
-//     basically it checks that rendering should happen or not.It is used for optimization purposes. It 
-//     returns a boolean value .
-// 3. render()
-// 4. getSnapshotBeforeUpdate(): It is called right before updating the DOM.It has access to state 
-//    and props before the update so that you can check what is the value of state and props right 
-//     before update.
-// 5. componentDidUpdate(): It is caled after the component has updated in the dom .It is the best 
-//     place in updating the dom in response to the change of props and state.
-
-// 3. Unmounting: This is the final phase of a react component lifecycle.It occurs when a component 
-//     has been removed from the dom. It has only one method:
-//     1. componentWillUnmount():  It is used for cleanup actions like cancelling api calls , removing 
-//         subcriptions and timers. You cannot use setstate here as the component gets unmounted 
-//         and no re-rendering will happen.
 
 
 
@@ -1011,21 +799,3 @@ console.log(yearinreteirement);
 // 	if(cache[n]) return cache[n]
 // 	return cache[n] = memoizedFibonacci(n-1,cache) + memoizedFibonacci(n-2,cache)
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

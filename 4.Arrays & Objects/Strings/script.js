@@ -1,9 +1,9 @@
 // Fundamental String Questions
 
 // Todo
-//* Reverse A string
+//* Reverse A string ✅
 //* Reverse only alphabetical
-//* Check Anagram
+//* Check Anagram ✅
 //* Validate Palindrome(Check Palindrome)
 //* Detect Substring in String
 //* Dollar Sign Deletion
@@ -13,16 +13,16 @@
 //* Custom Sort String 
 //* Simplyfying absolute paths 
 //* Length of longest palindrome
-//* Length of string compression
+//* Length of string compression(string compression) ✅
 //* Generate all string Permutations
 //* String Breakdown
 //* Convert Number to Words
 //* Longest Palindromic Substring
 //* Text Justification
-//* Longest Substring with no repeat characters
+//* Longest Substring with no repeat characters ✅
 //* Remove Invalid Parenthesis
 
-//1. Count Words
+//*1. Count Words
 // Buit in methods
 function countWords(string) {
   const words = string.split(' ');
@@ -44,7 +44,7 @@ function countWords1(string) {
 }
 console.log(countWords1('The quick brown fox jumps over the lazy dog'));
 
-// Count Vowels
+//* Count Vowels
 function countVowels(string) {
   let i = 0;
   let vowels = 0;
@@ -59,7 +59,7 @@ function countVowels(string) {
 }
 console.log(countVowels('overa'));
 
-// Reverse String
+//* Reverse String
 // a) Empty string
 function reverseString(string) {
   let reversed = ''
@@ -70,7 +70,7 @@ function reverseString(string) {
   }
   return reversed;
 }
-console.log(reverseString('over'));
+console.log(reverseString('game over'));
 
 // b) Using Stack
 function reverseString1(string) {
@@ -78,16 +78,16 @@ function reverseString1(string) {
   let i = string.length - 1;
   while (i >= 0 ) {
     let element = string.charAt(i);  
-    reversed.push
+    reversed.push(element)
     i--;
   }
-  return reversed;
+  return reversed.toString();
 }
-console.log(reverseString1('over'));
+console.log(reverseString1('over game'));
 let stack = []
 
 
-// Reverse words
+//* Reverse words
 function reverseWords(string) {
   let trimedAndSplitted = string.trim().split(' ');
   let reversed = ''
@@ -131,7 +131,7 @@ function reverseWords1(string) {
 console.log(reverseWords1('shubham is'));
 
 
-// Capitalize First Letter of each word.
+//* Capitalize First Letter of each word.
 function capitaliseFirstLetter(string) {
   let splitted = string.split(' ');
   let i = 0;
@@ -146,7 +146,7 @@ function capitaliseFirstLetter(string) {
 }
 console.log(capitaliseFirstLetter('a good example'));
 
-// Longest Word
+//* Longest Word
 function longestWord(string) {
   let splitted = string.split(' ');
   let i = 0;
@@ -163,7 +163,30 @@ function longestWord(string) {
 }
 console.log(longestWord('a good cubical example'));
 
-// Remove Duplicates
+//* Maximum Character in String
+function findMaximumCharacter(str) {
+  let charMap = {}
+  for (const ele of str) {
+    if(charMap[ele]) charMap[ele]++
+    else{
+      charMap[ele] = 1
+    }
+  }
+  
+  let maxChar = ''
+  let maxNum = 0
+  for (const [key,value] of Object.entries(charMap)) {
+    
+    if(value > maxNum){
+      maxNum = value
+      maxChar = key
+    }
+  }
+  return [maxChar, maxNum]
+}
+console.log(findMaximumCharacter('%3#1#23#$'));
+
+//* Remove Duplicates
 // Input: "Hello World"
 // Output: "Helo Wrd"
 
@@ -185,11 +208,11 @@ function removeDuplicatesModified(str) {
   let set = new Set();
   let ans = "";
   for(x of str){
-    if(x === " ") {
+    if(x === " ") {    // for skipping the duplicte space
       if(ans[ans.length-1] === " ") continue
       ans += " "
     }
-    else if(set.has(x)) {
+    else if(set.has(x)) {  // for skipping the duplicte character
       continue
     }
     else {
@@ -234,7 +257,7 @@ function countPalindromes(string) {
 // Input: String="araaci", K=2
 // Output: 4
 
-// 1. Keep account of distinct characters discovered
+// 1. Keep account of distinct characters discovered while finding k unique character string.(i.e we have to find k unique character string)  
 // 2.Calculate length of required string
 // 3. Do this to exaust the execution space
 
@@ -384,8 +407,8 @@ function sameLetterSubstringAfterReplacement(string,k) {
       
       // console.log('highest'+mostrepeated);
       // console.log((j - i + 1) - mostrepeated);
-      if((j - i + 1) - mostrepeated <= k) maxLength = Math.max(maxLength,j-i+1) 
-      else if((j - i + 1) - mostrepeated === 0) maxLength = Math.max(maxLength,j-i+1) 
+      if((j - i + 1) - mostrepeated <= k) maxLength = Math.max(maxLength,j-i+1) // when visible replacement is less than given replacement.
+      else if((j - i + 1) - mostrepeated === 0) maxLength = Math.max(maxLength,j-i+1)  // for string containg same letter
       //console.log(maxLength);     
     }
     
@@ -399,6 +422,7 @@ console.log(sameLetterSubstringAfterReplacement("abba",2));
 console.log(sameLetterSubstringAfterReplacement("aababba",1));
 console.log(sameLetterSubstringAfterReplacement("aaaa",2));
 console.log(sameLetterSubstringAfterReplacement("abbb",2));
+
 //* remove character from string
 function removeCharacter(string) {
   if(string === '' || string === 'x') return ''
@@ -441,6 +465,35 @@ function insertBetweenIdentical(string) {
 }
 console.log(insertBetweenIdentical('aabb'));
 
+//* String Compression
+//Eg: "aabcccccaaa" => "a2b1c5a3"
+//    "abcd" => "abcd"
+
+function stringCompression(str) {
+  let i = 0;
+  let compressed = ''
+  let uniqueCount = 1
+  while (i < str.length) {
+    let charCount = 1;
+    let j = i+1
+    while (j < str.length) {
+      if(str.charAt(i) === str.charAt(j)){
+        charCount++
+        j++
+      } 
+      else {
+        uniqueCount++
+        break
+      }
+    }
+    compressed += str.charAt(i) + charCount
+    i = j
+  }
+  return uniqueCount === str.length ? str : compressed
+}
+console.log(stringCompression('aabcccccaaa'));
+console.log(stringCompression('abcd'));
+console.log(stringCompression('abcde'));
 //* atoi()(convert string to integer)
 
 function atoi(s) {
@@ -488,7 +541,7 @@ function checkAnagram(str1,str2) {
     else characterMap[str1.charAt(i)] = 1
   }
   for (let j = 0; j < str2.length; j++) {
-    if(Object.keys(characterMap).includes(str2.charAt(j)) && Object.keys(characterMap).includes(str2.charAt(j))){
+    if(Object.keys(characterMap).includes(str2.charAt(j))){
       characterMap[str2.charAt(j)] -=1
     }
     else characterMap[str2.charAt(j)] = 1 
@@ -500,7 +553,7 @@ function checkAnagram(str1,str2) {
   }
   return true
 }
-//console.log(checkAnagram('aabc','baca'));
+console.log(checkAnagram('aabc','baca'));
 
 //*Find all anagrams in a string.
 function findAllAnagrams(s,p) {

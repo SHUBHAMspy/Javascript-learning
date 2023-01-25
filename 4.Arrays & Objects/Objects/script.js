@@ -63,7 +63,8 @@ var values = Object.values(Shubham);
 console.log(values);
 
 // 5. Object.entries()
-// The Object.entries() method returns an array of a given object's own enumerable string-keyed property [key, value] pairs. This is the same as iterating with a for...in loop, except that a for...in loop enumerates properties in the prototype chain as well.
+// The Object.entries() method returns an array of a given object's own enumerable string-keyed property [key, value] pairs. 
+// This is the same as iterating with a for...in loop, except that a for...in loop enumerates properties in the prototype chain as well.
 var obj1 = {
   foo: 'bar',
   fizz: 'buzz' 
@@ -79,7 +80,7 @@ for (let [key, value] of Object.entries(obj)) {
 }
 
 // 2. Converting an Object to a Map
-// The Map() constructor accepts an iterable of entries. With Object.entries, you can easily convert from Object to Map
+// The Map() constructor accepts an iterable of entries. With Object.entries(), you can easily convert from Object to Map
 const map = new Map(enteries);
 console.log(map);
 
@@ -109,15 +110,15 @@ console.log(obj1);
  * JSON
 */
 
-// JSON is a way of representing data through text.
-// JSON is a string whose format very much resembles JavaScript object literal format.
+//* JSON is a way of representing data through text.
+//* JSON is a string whose format very much resembles JavaScript object literal format.
 // Even though it closely resembles JavaScript object literal syntax, it can be used independently from JavaScript.
-// JSON exists as a string — useful when you want to transmit data across a network. 
+//* JSON exists as a string — useful when you want to transmit data across a network. 
 // It needs to be converted to a native JavaScript object when you want to access the data. 
 // JavaScript provides a global JSON object that has methods available for converting between the two.
 
-// Serialization: converting a native object to a string so it can be transmitted across the network is called serialization.
-// Deserialization: Converting a string to a native object is called deserialization.
+//? Serialization: converting a native object to a string so it can be transmitted across the network is called serialization.
+//? Deserialization: Converting a string to a native object is called deserialization.
 
 // JSON is purely a string with a specified data format — it contains only properties, no methods.
 // Unlike in JavaScript code in which object properties may be unquoted, in JSON only quoted strings may be used as properties.
@@ -188,7 +189,7 @@ for (const [key,value] of Object.entries(user)) {
 /************************ */
 
 // Object Referencing
-// Objects are always referenced 
+//* Objects are always referenced 
 // thinking that assigning an object will actually copy it to another is wrong
 // But actually an object's reference in heap memory is copied.
 var copiedUser = user; 

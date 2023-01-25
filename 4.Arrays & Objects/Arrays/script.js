@@ -50,7 +50,7 @@ console.log(includes('Abhinav'));
 // 3.Calculate length of array withou built in method
 function calculateLength(array) {
   let count = 0;
-  for (let index = 0; index < array.length; index++) {
+  for (let index = 0; array[index]; index++) {
     count++; 
   }
   return count;
@@ -73,7 +73,7 @@ function evenAndOddElements(array) {
   let even = [];
   let odd = [];
   for (let index = 0; index < array.length; index++) {
-    if(array[index] % 2 == 0) even.push(array[index]);
+    if(index % 2 == 0) even.push(array[index]);
     else odd.push(array[index]);
   }
   console.log(even,odd);
@@ -98,7 +98,7 @@ function removeSpecificElement(element,array) {
   return -1;
 }
 
-console.log(removeSpecificElement(1,names));
+console.log(removeSpecificElement('Gaurav',names));
 
 // 6. Reverse an Array
 // a)
@@ -131,7 +131,7 @@ function reverseArray1(array) {
 console.log(reverseArray1(ages));
 
 
-// Print all distinct elements
+//* Print all distinct elements
 function printDistinct(array) {
   const uniques = new Set(); //O(n) space and O(n) time
   for (let index = 0; index < array.length; index++) {
@@ -169,7 +169,7 @@ console.log(countDuplicate1(ages));
 // }
 // console.log(countDuplicate(ages));
 
-// Count Occurences of elements
+//* Count Occurences of elements
 
 // a) By Sorting array
 function countOccurences(array) {
@@ -201,7 +201,7 @@ countOccurences(ages)
 // }
 // console.log(countOccurences(ages));
 // *Merge Sorted Array
-function mergeSorteArrays(arr1,m,arr2,n) {
+function mergeSortedArrays(arr1,m,arr2,n) {
   const merged = [];
   let index = 0;
   // We are running loop to fill the bigger array actually which fulfills merger
@@ -225,7 +225,7 @@ function mergeSorteArrays(arr1,m,arr2,n) {
   return merged;
 }
 
-console.log(mergeSorteArrays([1,2,3],3,[2,4,5,6],4));
+console.log(mergeSortedArrays([1,2,3],3,[2,4,5,6],4));
 
 // Merge Intervals
 // the goal is to produce a list of mutually exclusive intervals.
@@ -313,7 +313,7 @@ console.log(mergeIntervalsOptimized([[1,3],[2,6],[8,10],[15,18]]));
 // console.log(mergeIntervalsOptimized([[1,4],[1,5]]));
 console.log(mergeIntervalsOptimized([[1,4],[0,2],[3,5]]));
 
-// Insert Interval
+//* Insert Interval
 function mergeIntervalSDifferent(intervals) {
   let modifiedIntervals = [];
   if(intervals.length < 2) modifiedIntervals.push(intervals[0])
@@ -362,7 +362,7 @@ function longestCommonPrefix(array) { //brute force
 console.log(longestCommonPrefix(["dog","racecar","car"]));
 
 
-// Intersection of two Arrays
+//* Intersection of two Arrays
 function intersection(nums1, nums2) { // Brute force.
   let intersection = []
   nums1.sort((a,b) => a - b)
@@ -371,7 +371,7 @@ function intersection(nums1, nums2) { // Brute force.
   // [4,4,8,9,9]
   let i = 0;
   
-  while (i < nums1.length ) {
+  while (i < nums1.length ) { // O(n2+)
     let j = 0;
     while (j < nums2.length) {
       if(!intersection.includes(nums1[i]) && nums1[i] == nums2[j]){
@@ -494,6 +494,22 @@ function rotateArray(nums,k) {
   return nums;
 }
 console.log(rotateArray([1,2,3,4,5,6,7],3));
+
+// Remove Duplicates
+const removeDuplicates = (nums) => {
+  const length = nums.length;
+  let i = 1;
+
+  while(i < length) {
+    if (nums[i-1] === nums[i] && nums[i] !== undefined) {
+      nums.splice(i, 1);
+    } else {
+      i++;
+    }
+  }
+  return nums;
+};
+console.log(removeDuplicates([1,1,2,2,2,3,4]));
 
 //* 4Sum
 function fourSum(nums,target) {

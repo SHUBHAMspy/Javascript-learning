@@ -3,7 +3,7 @@
 */
 
 // ES5 Syntax
-// var is function scoped or global scoped
+//* var is function scoped or global scoped
 var firstName ='Shubham';
 console .log(firstName);
 
@@ -19,8 +19,8 @@ console.log(fullAge);
 var job="student";
 console.log(job);
 
-// variables declared with var can be initialized at any time.
-// You can even use the variable before it is declared:i.e Variables defined with var are hoisted to the top
+//*  variables declared with var can be initialized at any time.
+//* You can even use the variable before it is declared:i.e Variables defined with var are hoisted to the top
 sex='male';
 var sex;
 console.log(sex);
@@ -33,16 +33,16 @@ console.log(sex);
 // A const cannot be reassigned and redeclared.
 const firstName6 ='Shubham';
 console .log(firstName);
-// firstName6 = 'zap' Error: Assignment to constant variable
+//! firstName6 = 'zap' Error: Assignment to constant variable
 console.log(firstName6);
 
 const lastName6 ='Pandey';
-// const lastName6 = 'Sharma'  Error:Identifier 'lastName6' has already been declared
+//! const lastName6 = 'Sharma'  Error:Identifier 'lastName6' has already been declared
 console.log(lastName6);
 
 // An array declared with const cannot be reassigned
 const names6 = ["Shubham","Saurabh"];
-// names6 = ["zap","sap"];  Error: Assignment to constant variable
+//! names6 = ["zap","sap"];  Error: Assignment to constant variable
 
 // The keyword const is a little misleading.
 // It does NOT define a constant array. It defines a constant reference to an array.
@@ -50,20 +50,20 @@ const names6 = ["Shubham","Saurabh"];
 names6[0] = "zap";
 console.log(names6);
 
-// const variables must be assigned a value when they are declared:
-// const sex6;   // Using const without initializing is a syntax error.
+//* const variables must be assigned a value when they are declared:
+//! const sex6;   // Using const without initializing is a syntax error.
 // sex6 = 'male';
 
 //Variables defined with const are also hoisted to the top, but not initialized .
-// and accessible until its declared since, its declared and initialized at the same line.
-//alert (carName); // Using a const variable before it is declared will result in a ReferenceError.
+// and not accessible until its declared since, its declared and initialized at the same line.
+//!alert (carName); // Using a const variable before it is declared will result in a ReferenceError.
 // const carName = "Volvo";
 
 // let is like normal variables whose value can be changed
 let age6=20;
 console.log(age);
 
-// let cannot be redeclared again in the same block 
+//* let cannot be redeclared again in the same block 
 // let age6=23;
 // console.log(age6);
 
@@ -73,8 +73,8 @@ console.log(fullAge);
 let job6="student";
 console.log(job);
 
-// Let and const variable cannot be redeclared in the same scope
-// const variable cannot be reassigned in the same scope.
+//* Let and const variable cannot be redeclared in the same scope
+//* const variable cannot be reassigned in the same scope.
 // {
 // 	const x = 2;   // Allowed
 // 	const x = 4;   // Not allowed
@@ -88,7 +88,7 @@ console.log(job);
 /****************
  *Variable mutation and type coercion
  */
- /*
+ 
  var firstName='Shubham';
  var age= 20;
  console.log(firstName + " "+ age );
@@ -104,25 +104,25 @@ console.log(job);
  age=' twenty ';
  job=' innovator';
 
- alert(firstName +' is of '+ age + ' .He wanna be a ' + job+ ' is he married '+ismarried);
+//  alert(firstName +' is of '+ age + ' .He wanna be a ' + job+ ' is he married '+ismarried);
 
- var lastName = prompt('what is his  lastName ?');
- console.log( firstName +" "+ lastName);
+//  var lastName = prompt('what is his  lastName ?');
+//  console.log( firstName +" "+ lastName);
 
-*/
+
 
 /*****************
  *Basic operaters
  */
- /*
+ 
  var now, spyyear,sapyear;
  now=2019;
  agespy=20;
  agesap=17;
  // Maths operators
 
-spyyear=now -20;
-sapyear=now-17;
+spyyear=now - 20;
+sapyear=now - 17;
 
  console.log(spyyear);
  console.log(sapyear);
@@ -132,11 +132,10 @@ sapyear=now-17;
  console.log(now/17);
 
  // Logical operators
-  var spyolder= agespy>agesap;
+  var spyolder= agespy > agesap;
   console.log(spyolder);
 
   // typeof operator
-
   console.log( typeof spyolder);
   console.log(typeof agesap);
   console.log(typeof 'he is very hot');
@@ -144,19 +143,19 @@ sapyear=now-17;
   var x;
   console.log(typeof x);
 
-*/
+
 
 /**************************
 *Operator precedence
 */
-/*
+
 
 var spyyear=1999;
 var now =2019;
 fullAge=18;
 
 //Multiple operatrs
-console.log(now-spyyear>=fullAge);
+console.log(now - spyyear >= fullAge);
 
 var agesap=17;
 var agespy=20;
@@ -173,7 +172,7 @@ x++;
 y--;
 console.log(x,y);
 
-*/
+
 
 /***********************
 *Coding challenge
@@ -316,9 +315,9 @@ default:
 /*****************************
 *TRuthy and Falsy values and equality operators
 */
-/*
 
-// falsy values=undefined, '' , null, 0 ,NAN
+
+// falsy values = undefined, '' , null, 0 ,NAN
 var height;
 height=23;
 
@@ -331,14 +330,14 @@ else{
 }
 
 //Equality operators
-if (height=='23') {
+if (height == '23') {
 	console.log(' The == operator does the type coercion . Height is defined');
 }
 else{
 	console.log('height is undefined.');
 
 }
-*/
+
 
 /**************************
 *CODDING CHALLENGE 2
@@ -468,7 +467,7 @@ function driversLicence6(passedTest) {
 }
 driversLicence6(true);
 */
-/*
+
 //ES6
 ////////////////////////////
 //ARROW function(=>) concept
@@ -487,34 +486,34 @@ hello = () => {
 
 // 1.If you have only one parameter, you can skip the parentheses.
 // It gets shorter! If the function has only one statement, and the statement returns a value, you can remove the brackets and the return keyword.Arrow Functions Return Value by Default or implicitly
-const years6 = [1999,2002,1970,1989];
+//const years6 = [1999,2002,1970,1989];
 
-let ages6 = years6.map(el => 2020 - el);
-console.log(ages6);
+//let ages6 = years6.map(el => 2020 - el);
+//console.log(ages6);
 
 // 2.If you have more than one argument you can put them in parantheses
-ages6 = years6.map((el,index) => `Age${index}:${2020 - el}`);  //<---This is String Literal
-console.log(ages6);
+//ages6 = years6.map((el,index) => `Age${index}:${2020 - el}`);  //<---This is String Literal
+//console.log(ages6);
 
 // 3.If you have more than one line apart from the return statement then we have to include {}
 // and also the return will not be implicit you have to include that too
-ages6 = years6.map((el,index) => {
-	const currentYear = new Date().getFullYear();  // you can the current year through this
-	let age = currentYear - el;
-	return`Age${index}:${age}`;  //<---This is String Literal
-});
-console.log(ages6);
-*/
+// ages6 = years6.map((el,index) => {
+// 	const currentYear = new Date().getFullYear();  // you can the current year through this
+// 	let age = currentYear - el;
+// 	return`Age${index}:${age}`;  //<---This is String Literal
+// });
+// console.log(ages6);
+
 /*********************************
 * Functions statements and expreesions
 */
 
-/*
-// function declarations  (are statements)
+
+//* function declarations  (are statements)
 function whatdoyoudo( job,firstName){}
 
 //Function expression
-// All the things that give us immediate result are expressions
+//* All the things that give us immediate result are expressions
 var whatdoyoudo=function(job,firstName){
 	switch(job){
 		case 'student':
@@ -534,12 +533,12 @@ var whatdoyoudo=function(job,firstName){
 
 console.log(whatdoyoudo('student','Shubham'));
 console.log(whatdoyoudo('model','Saurabh'));
-*/
+
 
 /*************************
 * Strings
 */
-/*
+
 // ES5 Syntax
 //  inorder simlply log into the console for the format we want we have to write big strings
 function driversLicence5(passedTest) {
@@ -561,7 +560,7 @@ driversLicence5(true);
 // in just one single string
 function driversLicence6(passedTest) {
     
-    //console.log(firstName); // But this will give error because it is hoisted & let and const don't allow to access it before dfining it. 
+    //console.log(firstName); // !But this will give error because it is hoisted & let and const don't allow to access it before defining it. 
     let firstName;
     const yearOfBirth = 1990;
     
@@ -587,19 +586,18 @@ console.log(str.endsWith('of'));
 
 //3.repeat()
 console.log(str.repeat(2));
-*/
 
 // 4. replace()
-// str.replace('S','s') // 'shubham Pandey'
+ str.replace('S','s') // 'shubham Pandey'
 
 // 5. charAt()
-// str.charAt(1) // 'h'
+ str.charAt(1) // 'h'
 
 // 6. replaceAll()
-// str.replaceAll('Shubham','zap') //'zap Pandey'
+ str.replaceAll('Shubham','zap') //'zap Pandey'
 
 // 7. indexOf()
-// str.indexOf(' ')  // 7
+ str.indexOf(' ')  // 7
 
 
 /*************************
@@ -611,7 +609,7 @@ console.log(str.repeat(2));
 // Initialise  ARRAY
 var names = ['Shubham','Saurabh','Saroj']; // 1st Way
 
-var year = new Array(1999,2002,1979);      // 2nd Way   
+var year = new Array(1999,2002,1979);      // 2nd Way   Array constructor method
 
 console.log(names);
 console.log(names.length);   // in JavaScript length is a property and not a method
@@ -655,7 +653,7 @@ console.log(ismusician);
 
 
 //6. every()
-// The every method executes the provided callback function once for each element present in the array until it finds the one where callback returns a falsy value. 
+// The every method executes the provided callback function once for each element present in the array  
 // If such an element is found, the every method immediately returns false. Otherwise, if callback returns a truthy value for all elements, every returns true.
 // Calling this method on an empty array will return true for any condition!
 //The predicate  or callback function is passed three arguments every(): the current array element to test, the index in the array, and the array itself. 
@@ -663,21 +661,30 @@ console.log(ismusician);
 // It accept an optional thisArg as the second parameter (after the predicate). It specifies the value to use as this when executing the predicate function.
 
 // If you want to perform a certain task on every single element without using loops then you can use every()
-var result = [1999,2002,1970,1989].every(function(el){  // you can also use the arrays object to call the function or methods apart from Arrays class or object.
+var result = [1999,2002,1970,1980].every(function(el){  // you can also use the arrays object to call the function or methods apart from Arrays class or object.
 	return (el % 2) === 0;
 })
 
 console.log(result);
 
 // Array methods: every(), some(), find(), and findIndex() test the array elements with a predicate returning a truthy value to determine if further iteration is required.
-
-
+// 7. find()
+// Find method is used to get the value of the first element in the array that satisfies the provided condition. 
+const heroes = [
+	{name: "Captain America", age:70, IQ:150},
+	{name: "Iron Man", age:35, IQ:175},
+	{name: "Thor", age:10000, IQ:140},
+	{name: "Hulk", age:40, IQ:170},
+	{name: "Natasha Romanoff", age:35, IQ:150},
+]
+let hero = heroes.find((el) => el.IQ > 150)
+console.log(hero.name);
 // 7. map()
 //The map() method creates a new array with the results of calling a callback function for every array element.
 //The map() method calls the provided function once for each element in the calling array , in order.
 
-//Note: map() does not execute the function for array elements without values.
-//Note: this method does not change the original array.
+//?Note: map() does not execute the function for array elements without values.
+//?Note: this method does not change the original array.
 
 // my_array.map(function(item,index,arr) {
 //  console.log("item: " + item + " at index: " + index + " in the array: " + arr);
@@ -702,8 +709,8 @@ console.log(ages5);
 // 8. filter()
 // The filter() method creates an array filled with all array elements that pass a test (provided as a function).
 
-//Note: filter() does not execute the function for array elements without values.
-//Note: filter() does not change the original array.
+//?Note: filter() does not execute the function for array elements without values.
+//?Note: filter() does not change the original array.
 
 // callback is invoked with three arguments:
 // 1.the value of the element
@@ -722,7 +729,7 @@ console.log(adults);
 // 9. splice()
 // The splice() method adds/removes items to/from an array, and returns the removed item(s).
 
-//Note: This method changes the original array.
+//?Note: This method changes the original array.
 //Argument 1: Index, Required. An integer that specifies at what position to add /remove items, Use negative values to specify the position from the end of the array.
 //Argument 2: Optional. The number of items to be removed. If set to 0(zero), no items will be removed. And if not passed, all item(s) from provided index will be removed.
 //Argument 3…n: Optional. The new item(s) to be added to the array.
@@ -769,7 +776,7 @@ console.log(adults);
 
 //You can specify the position of where to start and end the filling. If not specified, all elements will be filled.
 
-//Note: this method overwrites the original array.
+//?Note: this method overwrites the original array.
 // value	Required. The value to fill the array with
 // start	Optional. The index to start filling the array (default is 0)
 // end	    Optional. The index to stop filling the array (default is array.length)
@@ -873,7 +880,7 @@ var tipcalculator =  function(bill){ // I expected an immediate result so just r
  	job:'student',
  	ismarried:false
  };   
- // Acessing objects
+ //* Acessing objects
  // 1. Dot notation
  console.log(Shubham.firstName);
 
@@ -1006,7 +1013,7 @@ for (var i = 0; i < Shubham.length; i++) {
  	console.log(Shubham[i]);
  }
 
- //small challenge
+ // small challenge
  for (var i = Shubham.length -1 ; i >=0 ; i--) {
  	if (typeof Shubham[i]!=='string') continue;
  	console.log(Shubham[i]);

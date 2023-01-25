@@ -1,12 +1,12 @@
-// The top-most node in the dom tree is the document node which is the root node.
-// Document node is used to access all the nodes of the dom and manipulate its content.
+//* The top-most node in the dom tree is the document node which is the root node.
+//* Document node is used to access all the nodes of the dom and manipulate its content.
 
 // Dom Manipulation
 
 // In order to manipulate a node/element we need to first select that node.
 
 // Selection in Dom
-// ---------------------------
+/********************* */
 // First select the document head node inorder to select anything in the dom.
 
 // 1.getElementById()
@@ -20,7 +20,7 @@ console.log(heading);
 const listItems = document.getElementsByClassName('list-item')
 console.log(listItems);
 
-// 3. getElementByTagName
+// 3. getElementByTagName()
 // It is similar to getElementByClassName but it accepts a tag name
 // and returns all the elements of the specified tag in the order they appear/specified in the dom.  
 
@@ -246,7 +246,7 @@ loadButton.addEventListener('click',function(){
 // Event Delegation
 // Event Delegation allows users to delegate or append only a Single Event listner to a parent element that adds it 
 // to all of its present and future descendants.
-// The idea of event delegation is prretty simple that instead of attaching the event listeners directly to each of th elist items 
+// The idea of event delegation is prretty simple that instead of attaching the event listeners directly to each of the list items 
 // we can delegate the listening of events to the parent so when the events occur it gets bubbled up to the parent and it executes and performs our task.
 
 function changeBgGrey(e) {
