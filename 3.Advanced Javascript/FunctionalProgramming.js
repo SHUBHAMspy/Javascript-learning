@@ -292,7 +292,7 @@ console.log(firstName);
 
 /****************
   Currying
-*/
+*****************/
 /*
 Currying is a process in functional programming in which we can transform a function with multiple arguments into a sequence of nesting functions. It returns a new function that expects the next argument inline.
 It keeps returning a new function (that expects the current argument, like we said earlier) until all the arguments are exhausted. 

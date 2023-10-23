@@ -70,7 +70,7 @@ function nextGreaterElement(nums1,nums2) {
     
     while (decreasingStack.length !== 0 && decreasingStack[decreasingStack.length - 1] <= nums2[i] ) {
       // Because we are fulfilling the nature/property of decreasing stack so to make it work that way we are coding it accordingly
-      let deleted = decreasingStack.pop(); // removing is challenging other greater that see
+      let deleted = decreasingStack.pop(); // removing is challenging other greater that see i am bigger than you so you can't be a contender now
       console.log(deleted);
     }
     
@@ -145,7 +145,7 @@ function areaOfLargestReactangleFormed(heights) {
 
   let smallerElementsRight = nextSmallerElement(heights);
   let smallerElementsLeft = prevSmallerElement(heights)
-
+// our job is to construct a reactangle from a current height
   for (let i = 0; i < heights.length; i++) {
     // if PLE doesn't exist, all bars up to index 0 are part of current rectangle
     let barsOnLeft = smallerElementsLeft[i] === -1 ? i : i - smallerElementsLeft[i] - 1;

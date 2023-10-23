@@ -90,6 +90,7 @@ let stack = []
 //* Reverse words
 function reverseWords(string) {
   let trimedAndSplitted = string.trim().split(' ');
+  console.log(trimedAndSplitted);
   let reversed = ''
   let i = trimedAndSplitted.length - 1;
  
@@ -106,29 +107,31 @@ console.log(reverseWords('a is  good   example'));
 //Without built-in
 function reverseWords1(string) {
   let reversedLetters = reverseString(string); // O(n)
+  let temp = ''
   console.log(reversedLetters);
   let i = 0;
   while (i < reversedLetters.length) {
     let j = i;
     while ( j < reversedLetters.length && reversedLetters.charAt(j) !== ' ') j++;
     let k = j - 1;
-    while (i <= k) {
+    while (k >= i) {
       console.log(i);
       console.log(k);
-      let temp = reversedLetters.charAt(i)
+      
       console.log(temp);
-      reversedLetters[i] = reversedLetters[k]
-      reversedLetters[k] = temp
-      i++;
+      temp+= reversedLetters[k]
+      
       k--;
       console.log(reversedLetters);
     }
     i = j
+    if(reversedLetters[i])temp+= reversedLetters[i]
+    
     while(reversedLetters[i] == ' ') i++;
   }
-  return reversedLetters
+  return temp
 }
-console.log(reverseWords1('shubham is'));
+console.log(reverseWords1('shubham  is good '));
 
 
 //* Capitalize First Letter of each word.
@@ -166,7 +169,7 @@ console.log(longestWord('a good cubical example'));
 //* Maximum Character in String
 function findMaximumCharacter(str) {
   let charMap = {}
-  for (const ele of str) {
+  for (const ele of str) { //O(n)
     if(charMap[ele]) charMap[ele]++
     else{
       charMap[ele] = 1
@@ -192,7 +195,7 @@ console.log(findMaximumCharacter('%3#1#23#$'));
 
 function removeDuplicates(string) {
   let removed = ''
-  let set = new Set();
+  let set = new Set(); //O(n)
   for (let i = 0; i < string.length; i++) {
     set.add(string.charAt(i));
   }
@@ -201,6 +204,7 @@ function removeDuplicates(string) {
   }
   return removed;
 }
+console.log(removeDuplicates("Hello World"));
 console.log(removeDuplicates("Mellow Vibe is good"));
 
 // a) Modified version
@@ -392,7 +396,7 @@ function sameLetterSubstringAfterReplacement(string,k) {
   // keep account of duplicate characters by hashmap
   // for each substring constituted find/select most repeating character
   
-  let maxLength = 0;
+  let maxLength = 0; //O(n2)
   for (let i = 0; i < string.length; i++) { // for condidering each substring
     let map = {}
     let mostrepeated = 0;
@@ -401,11 +405,11 @@ function sameLetterSubstringAfterReplacement(string,k) {
       else {
         map[string.charAt(j)] = 1
       }
-      for (let value of Object.values(map)) {
-         mostrepeated = Math.max(mostrepeated,value)
-      }
+     
+      mostrepeated = Math.max(mostrepeated,map[string[j]])
       
-      // console.log('highest'+mostrepeated);
+      
+      console.log('highest'+mostrepeated);
       // console.log((j - i + 1) - mostrepeated);
       if((j - i + 1) - mostrepeated <= k) maxLength = Math.max(maxLength,j-i+1) // when visible replacement is less than given replacement.
       else if((j - i + 1) - mostrepeated === 0) maxLength = Math.max(maxLength,j-i+1)  // for string containg same letter
@@ -436,7 +440,7 @@ console.log(removeCharacter('abxcdx'));
 
 //* Replace pi
 function replacePI(string) {
-  if(string.length === '') return ''
+  if(string.length === 0) return ''
   if(string === 'pi') return '3.14'
   let newString = string.substring(1)
   // let modifiedString = replacePI(newString)
@@ -515,7 +519,7 @@ function atoi(s) {
   console.log(Math.max());
   // Check digit and form integer
   while( s.charAt(i) >= '0' && s.charAt(i) <= '9') { // for checking digit range
-    integer = (integer * 10) + (s.charAt(i) - '0')
+    integer = (integer * 10) + (s.charAt(i) - '0') // at first unit digit will be constructed
     if( sign === 1 && integer >= max) return max
     if(sign === -1 && integer > max + 1) return min
     i++;
@@ -533,6 +537,8 @@ function checkAnagram(str1,str2) {
   if(str1 === '' || str2 === '' || str2.length !== str1.length) return false
   console.log(str1);
   console.log(str2);
+  // character should be same and with same amount
+  // So you want such a mapping where you have character amd its quantity/amount
   let characterMap = {}
   for (let i = 0; i < str2.length; i++) {
     if(Object.keys(characterMap).includes(str1.charAt(i))){
@@ -554,6 +560,8 @@ function checkAnagram(str1,str2) {
   return true
 }
 console.log(checkAnagram('aabc','baca'));
+console.log(checkAnagram('listen','silent'));
+console.log(checkAnagram('aabcd','abbcd'));
 
 //*Find all anagrams in a string.
 function findAllAnagrams(s,p) {
@@ -579,7 +587,7 @@ function isSubstring(s1,s2) {
 
   // Small Work
   if(s1.charAt(0) === s2.charAt(0)) return isExactlySame(s1,s2)
-  return isSubstring(s1.substring(1),s2)
+  return isSubstring(s1.substring(1),s2)  // Each time reducinthe execution space to find substring
 }
 function isExactlySame(s1,s2) {
   for (let i = 1; i < s2.length; i++) {
@@ -592,8 +600,8 @@ console.log(isSubstring("Shubham","bham"));
 //* Find all substrings
 function generateALLSubstrings(string) {
   let substrings = [""]
-  for (let i = 0; i < string.length; i++) {  //O(n*3)
-    for (let j = i; j < string.length; j++) {
+  for (let i = 0; i < string.length; i++) {  //O(n*3) //Considering the substring
+    for (let j = i; j < string.length; j++) { //constituting the substring
       let substring = ''
       for (let k = i; k <= j; k++) {
         substring += string.charAt(k);
@@ -619,9 +627,9 @@ function getSubsequences(string,subsequence,i,subsequences) {
   } 
   // console.log(subsequences);
   getSubsequences(string,subsequence,i + 1,subsequences)     // exclude
-  console.log(subsequences);
+  console.log(subsequences,'exlude');
   getSubsequences(string,subsequence + string.charAt(i), i + 1,subsequences) // include
-  console.log(subsequences);
+  console.log(subsequences,'include');
   
 }
 console.log(generateSubsequences("abcd"));
@@ -643,7 +651,8 @@ function getSubsequences2(string) {
   // Recursive Step
   let smallerProblem = string.substring(1) //smaller problem
   let smallerResult = getSubsequences2(smallerProblem)
-  answer.push(...smallerResult);
+  console.log(smallerResult.length);
+  answer.push(...smallerResult);// add smaller problem's solution or subsequences to the answer
   for (let i = 0; i < smallerResult.length; i++) {
     answer.push(string.charAt(0) + smallerResult[i])
   }

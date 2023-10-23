@@ -153,21 +153,21 @@ function countDuplicate1(array) {
 console.log(countDuplicate1(ages));
 
 // b) By Modifying array
-// function countDuplicate(array) {
-//   let count = 0;
-//   for (let index = 0; index < array.length; index++) {
-//     if (array[index] == 1) continue;
-//     for (let j = index + 1; j < array.length; j++) {
-//       if (array[j] == 1) continue;
-//       if(array[j] == array[index]){
-//         count++;
-//         array[j] = 1;
-//       }
-//     }
-//   }
-//   return count;
-// }
-// console.log(countDuplicate(ages));
+function countDuplicate(array) {
+  let count = 0;
+  for (let index = 0; index < array.length; index++) {
+    if (array[index] == 1) continue;
+    for (let j = index + 1; j < array.length; j++) {
+      if (array[j] == 1) continue;
+      if(array[j] == array[index]){
+        count++;
+        array[j] = 1;
+      }
+    }
+  }
+  return count;
+}
+console.log(countDuplicate(ages));
 
 //* Count Occurences of elements
 
@@ -209,19 +209,19 @@ function mergeSortedArrays(arr1,m,arr2,n) {
   // Infinite loop happens when we are waiting for something which is not there.
   let i = 0, j = 0;
   while ( i < m && j < n ) {
-      if(arr1[i] <= arr2[j]) {
-        merged[index++] = arr1[i++];
-      }  
-      else{
-        merged[index++] = arr2[j++];
-      } 
-    }
-    while (j < n) {
-      merged[index++] = arr2[j++];
-    }
-    while(i < m){
+    if(arr1[i] <= arr2[j]) {
       merged[index++] = arr1[i++];
-    }
+    }  
+    else{
+      merged[index++] = arr2[j++];
+    } 
+  }
+  while (j < n) {
+    merged[index++] = arr2[j++];
+  }
+  while(i < m){
+    merged[index++] = arr1[i++];
+  }
   return merged;
 }
 
@@ -230,7 +230,8 @@ console.log(mergeSortedArrays([1,2,3],3,[2,4,5,6],4));
 // Merge Intervals
 // the goal is to produce a list of mutually exclusive intervals.
 // or simply an interval to be put in a list.
-// Brute force works on limited cases needs huge modifications.
+
+//a) Brute force works on limited cases needs huge modifications.
 function mergeIntervals(intervals) {
   let modifiedIntervals = [];
   if(intervals.length == 1) modifiedIntervals.push(intervals[0])
@@ -263,13 +264,14 @@ console.log(mergeIntervals([[1,4], [2,5], [7,9]]));
 console.log(mergeIntervals([[6,7], [2,4], [5,9]])); 
 console.log(mergeIntervals([[1,4],[1,5]]));
 
-// Optimized 
-// As intervals are times and are meant to be consecutive though they might overlap so we need to sort them first.
+//b) Optimized 
+// As intervals are times and are meant to be consecutive, though they might overlap so we need to sort them first.
 function mergeIntervalsOptimized(intervals) {
+  //Without using extra spaceO(1)
   //let modifiedIntervals = [];
   let combinedVal;
     if(intervals.length < 2) modifiedIntervals.push(intervals[0])
-    intervals.sort((a,b) => a[0] - b[0])
+    intervals.sort((a,b) => a[0] - b[0]) //O(nlogn)
     for (let i = 0; i < intervals.length - 1; ) {
       let currentInterval = intervals[i];
       let nextInterval= intervals[i + 1];
@@ -289,17 +291,17 @@ function mergeIntervalsOptimized(intervals) {
     // currentInterval[0] === nextInterval[0] && currentInterval[1] <= nextInterval[1] ||
     // currentInterval[0] <= nextInterval[0] &&  currentInterval[1] === nextInterval[0] 
     // (nextVal[0] <= val[0] && nextVal[1] >= val[0]) ||   
-    console.log(i);  
+    console.log(i,"before");  
     if(
         (currentInterval[0] <= nextInterval[0] && currentInterval[1] >= nextInterval[0]) || 
         (currentInterval[1] >= nextInterval[0] && currentInterval[1] >= nextInterval[1]) ||
-        (nextInterval[0] <= currentInterval[1] && nextInterval[1] >= currentInterval[1])
+        (nextInterval[0] <= currentInterval[1] && currentInterval[1] <= nextInterval[1])
         ){
         combinedVal = [Math.min(currentInterval[0],nextInterval[0]),Math.max(currentInterval[1],nextInterval[1])]
-        intervals.splice(i,2,combinedVal)
+        intervals.splice(i,2,combinedVal) //to modify original array intervals
         i =-1 
       } 
-      //console.log(i);
+      console.log(i,"after");
       i++
     
     }     
@@ -336,6 +338,10 @@ function mergeIntervalSDifferent(intervals) {
 }
 console.log(mergeIntervalSDifferent([[1,3],[2,6],[8,10],[15,18]]));
 // Longest Common Prefix
+//For each character in a string we are finding the same characters in subsequent string
+//In order to be common prefix the character or substring should exist in all the strings 
+// And in the process try to keep accont of thoe charcters
+//Improvisation Hint: For each character in string1 we are trying to find/match in subsequent strings
 function longestCommonPrefix(array) { //brute force
   let lcp = "";
   const map = new Map();
@@ -351,7 +357,7 @@ function longestCommonPrefix(array) { //brute force
     }
   }
   // console.log(map);
-  map.forEach((value,key) => {
+  map.forEach((value,key) => { //O(n)
     if(value == array.length){
       lcp += key
     }
@@ -360,9 +366,12 @@ function longestCommonPrefix(array) { //brute force
   return lcp ;
 }
 console.log(longestCommonPrefix(["dog","racecar","car"]));
+console.log(longestCommonPrefix(["flower","flow","flight"]));
+console.log(longestCommonPrefix(["alove","alex","almond"]));
 
 
 //* Intersection of two Arrays
+//For each element in array1 we are going to find it in array2
 function intersection(nums1, nums2) { // Brute force.
   let intersection = []
   nums1.sort((a,b) => a - b)
@@ -388,8 +397,11 @@ function intersection(nums1, nums2) { // Brute force.
 console.log(intersection([4,9,5],[9,4,9,8,4]));
 console.log(intersection([1,2,2,1],[2,2]));
 
-// Maximum sum subarray size k
+//* Maximum sum subarray size k
+//Calculate sum of k sized subarray 
+// And then find maximum from them
 
+//this does not consider each subarray or not take into account for each subarray
 // function maximumSumSubarray(nums,k) {
 //   let maxSum = 0;
 //   for (let i = 0,j = 1, k = 2; i < nums.length - 2,j < nums.length - 1,k < nums.length; i++,j++,k++) {
@@ -402,9 +414,9 @@ console.log(intersection([1,2,2,1],[2,2]));
 
 function maximumSumSubarray(nums,k) {
     let maxSum = 0;
-    for (let i = 0; i <= nums.length - k; i++) {
+    for (let i = 0; i <= nums.length - k; i++) { //for considering subarray
       let sum = 0
-      for (let j = i ; j < i + k; j++) {
+      for (let j = i ; j < i + k; j++) { //for constituting and calculating sum of subarray
         sum += nums[j];
         maxSum = Math.max(sum,maxSum)
       }
@@ -414,11 +426,12 @@ function maximumSumSubarray(nums,k) {
 console.log(maximumSumSubarray([2, 3, 4, 1, 5],2));  
 
 // a) Sliding Window
+// Window just only represents the chunk of array we are currently processing
 function maximumSumSubarraySlidingWindow(nums,k) {
   let maxSum = 0;
   let left = 0;
   let windowSum = 0;
-  for (let right = 0; right < nums.length; right++) {
+  for (let right = 0; right < nums.length; right++) { //O(n)
     // First create the window
     if(right < k) windowSum += nums[right];
     
@@ -433,7 +446,7 @@ function maximumSumSubarraySlidingWindow(nums,k) {
 }
 console.log(maximumSumSubarraySlidingWindow([2, 1, 5, 1, 3, 2],3));
 
-// Shortest Subarray with Sum at Least K
+//* Shortest Subarray with Sum at Least K
 // a) O(n2)
 function smallestSubarray(nums,K) {
   let minLength = Math.min();
@@ -488,26 +501,26 @@ function rotateArray(nums,k) {
     return;
   }
   if (k > nums.length) {
-      k = k % nums.length;
+      k = k % nums.length; //this gives us the actual rotation  
   } 
   nums.unshift(...nums.splice(-k));
   return nums;
 }
 console.log(rotateArray([1,2,3,4,5,6,7],3));
 
-// Remove Duplicates
+//* Remove Duplicates
 const removeDuplicates = (nums) => {
   const length = nums.length;
   let i = 1;
 
   while(i < length) {
-    if (nums[i-1] === nums[i] && nums[i] !== undefined) {
+    if (nums[i-1] === nums[i] && nums[i] !== undefined) { // here we are finding that current elemnt is a duplicate or not & then replacing/removing it in place
       nums.splice(i, 1);
     } else {
       i++;
     }
   }
-  return nums;
+  return nums.length;
 };
 console.log(removeDuplicates([1,1,2,2,2,3,4]));
 
@@ -609,7 +622,8 @@ console.log(trappingRainWater([4,2,0,3,2,5]));
   // }
 
 
-//* Binary Search
+//! Binary Search
+//Binary Search is based on divide & conquer approach
 //Input: [1, 2, 3, 4, 5, 6, 7], key = 5
 
 function binarySearch(nums, target) {
@@ -638,7 +652,7 @@ console.log(binarySearch([10, 6, 4],10));
 //console.log(binarySearch([-1,0,3,5,9,12],2));
 
 //*   Maximum in rotated and sorted array  
-// Since itn is rotated consider it to be a circular array or behaving as circular array
+// Since it is rotated consider it to be a circular array or behaving as circular array
 // Because a circle can be rotated on a axis/pivot , therefore rotation has made it to be thought as a circular array
 // And iterating into circular array is done by (i + 1) % n 
 function maximumInRotatedAndSorted(nums) {   // Bsed on bitonic array
@@ -661,9 +675,9 @@ function maximumInRotatedAndSorted(nums) {   // Bsed on bitonic array
     else end = mid - 1;
   }
 }
-console.log(maximumInRotatedAndSorted([4,5,6,1,2,3]));
-console.log(maximumInRotatedAndSorted([11,13,15,17]));
-console.log(maximumInRotatedAndSorted([2,1]));
+// console.log(maximumInRotatedAndSorted([4,5,6,1,2,3]));
+// console.log(maximumInRotatedAndSorted([11,13,15,17]));
+// console.log(maximumInRotatedAndSorted([2,1]));
 console.log(maximumInRotatedAndSorted([3,1,2]));
 //console.log(maximumInRotatedAndSorted([10,15,1,3,8]));
 
@@ -763,7 +777,7 @@ console.log(jumpGame([3,2,1,0,3]));
 
 
 
-//* Recursion and Arrays
+//! Recursion and Arrays
 
 //* Sum of array integrs
 // Input: [1,5,7,-2]
@@ -810,14 +824,78 @@ console.log(checkSorted([2,4,1,6,5]));
 console.log(checkSorted([1,2,3,4]));
 
 //* Missing Number
-// function findMissingNumber(nums) {
-//   for (let i = 0; i < nums.length; i++) {
-//     if(i != nums[i])
-    
-    
+// var missingNumber = function(nums) {
+//   let i = 0
+//   while(i < nums.length){
+//       let temp
+//       const current = nums[i]
+//       if(current !== i && current < nums.length){
+//         console.log('current',current);
+//         console.log(nums[current]);
+//           temp = nums[current]
+//           console.log('temp',temp);
+//           nums[current] = current
+//           console.log(nums[current]);
+//           nums[i] = temp
+//           console.log(nums[i]);
+//       }
+//       else i++
+//   }
+//   console.log(nums);
+//   for(let j=0; j < nums.length; j++){
+//     console.log(j,nums[j]);
+//       if(nums[j] !== j) return j
+//       else if(j === nums.length -1 && nums[j] !== nums.length) return nums.length
 //   }
 // }
+// console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
+// console.log(missingNumber([0,1]));
+var findDuplicates = function(nums) {
+  let ans = []
+  if(nums.length < 2) return []
+  let i = 0
+  while(i < nums.length){
+      let temp = 0
+      const current = nums[i]
+      console.log(i , "i");
+      if(nums[current - 1] !== nums[i]){
+          // temp = nums[i]
+          // nums[i] = nums[current - 1]
+          // nums[current - 1] = temp
+          console.log('current',current);
+        console.log(nums[current -1]);
+          temp = nums[current -1]
+          console.log('temp',temp);
+          nums[current -1] = current
+          console.log(nums[current -1]);
+          nums[i] = temp
+          console.log(nums[i]);
+      }
+      else i++
+      console.log(nums);
+  }
+  console.log(nums)
+  for(let j=0; j < nums.length; j++){
+      if(nums[j] !== j + 1) ans.push(nums[j])
+    //else if(j === nums.length -1 && nums[j] !== nums.length) return nums.length
+  }
+  return ans
+};
+console.log(findDuplicates([4,3,2,7,8,2,3,1]),"ans");
+//* Find Duplicate
+// This cannot use cyclic sort as input array should not be modified
+// As their are duplicate which creates a loop in our traversal 
+// which makes this problem to be transformed into LL having a loop/cycle
+var findDuplicate = function(nums) {
+  let i = 0
+  while(i < nums.length){
+    let j = nums[i] 
+    if(nums[i] === nums[j]) return nums[j]
+    i++ 
+  }
 
+};
+console.log(findDuplicate([1,3,4,2,2]),"ans");
 //* Combinations
 // a) With bactracking ideology
 function combinations(n,k) {
@@ -890,3 +968,141 @@ console.log(combinations2(3,2));
 // }
 
 // console.log(subsets([1, 3]));
+
+//* Majority Element
+// function majorityElement(nums) { //O(n2) & O(1)
+//   let majority;
+//   let maxFrequency = 1
+//   if(nums.length === 1) return nums[0]
+//   nums.sort((a,b) => a - b) //sort the nums 
+//   console.log(nums);
+//   let i = 0
+//   while(i < nums.length-1){
+//     let count = 1
+//     while (nums[i] === nums[i+1]) {
+//       count++
+//       i++
+//     }
+//     console.log(count,"count");
+//     console.log(nums.length/2);
+//     if(count >maxFrequency) {
+//       maxFrequency= count
+//       majority = nums[i] 
+//       console.log(majority)
+//     }
+//     i++
+//     console.log(i,"i");
+//   }
+//   console.log(majority,"majority");
+//   return majority
+// }
+// console.log(majorityElement([2,2,1,1,1,2,2]));
+// console.log(majorityElement([3,2,3]));
+// console.log(majorityElement([2,1,3,1,1,5,2]));
+// console.log(majorityElement([6,6,6,7,7]));
+
+var majorityElement = function(nums) {
+  let winningCandidate = 0
+  let votes = 0
+  if(nums.length === 1) return nums
+  if(nums.length < 3 && nums[0]!==nums[1]) return nums
+  for(let i = 0; i < nums.length; i++){
+      if(votes === 0){
+          votes=1
+          winningCandidate = nums[i]
+      }
+      else if(winningCandidate === nums[i])votes++
+      else votes-- 
+  }
+  //check for majority element(n/3)
+  console.log(winningCandidate);
+  let count = 0
+  for(let i= 0 ; i < nums.length; i++){
+      if(nums[i] === winningCandidate) count++
+  }
+  if(count > nums.length/3) { console.log(count);return [winningCandidate]}
+  return []
+};
+// console.log(majorityElement([3,3,4]));
+console.log(majorityElement([0,3,4,0]));
+//* Group Anagrams
+function sortString(str) {
+  return str.split('').sort().join('')
+}
+function groupAnagrams(strs) {
+  let anagrams = []
+  for (let index = 0; index < strs.length; index++) {
+    let currentAnagrams = []
+    const element = strs[index];
+    if(element === 1) continue
+    currentAnagrams.push(element)
+    for (let j = index + 1; j < strs.length; j++) {
+      if(strs[j] === 1) continue
+      if(element.length === strs[j].length){
+        let str1 = sortString(element)
+        let str2 = sortString(strs[j])
+        if(str1 === str2) {
+          currentAnagrams.push(strs[j])
+          // console.log(currentAnagrams);
+          strs[j] = 1
+        }
+      }   
+    }
+    anagrams.push(currentAnagrams)   
+  }
+  return anagrams
+}
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
+//* Next Permutation
+//* Roman to Integer
+function romanToInteger(string) {
+  const map = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  }
+  let integer = 0
+  for (let i = string.length - 1; i > 0; i--) {
+    if(string.charAt(i-1) > string.charAt(i)) integer += map[string.charAt(i)]
+    else integer -= map[string.charAt(i)]
+  }
+  console.log(integer);
+  return integer + map[string.charAt(0)]
+}
+console.log(romanToInteger('XIV'));
+//* Integer to roman
+function integerToRoman(num) {
+  const list = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];
+  const valueList = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  let result = '';
+
+  // Run until we have converted the full number
+  while (num !== 0) {
+      // Loop though the available numerals
+      for (let i = 0; i < list.length; i++) {
+          // Check if the outstanding number is greater than the current numeral
+          if (num >= valueList[i]) {
+              // If so, add this numeral to the result and subtract its value from the outstanding number
+              result += list[i];
+              num -= valueList[i];
+              break;
+          }
+      }
+  }
+  return result;
+
+}
+
+//b) place by place intitution
+var intToRoman = function (num) {
+  let M = ["", "M", "MM", "MMM"];
+  let C = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+  let X = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+  let I = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+  return M[parseInt(num/1000)] + C[parseInt((num%1000)/100)] + X[parseInt((num%100)/10)] + I[parseInt(num%10)];
+}
+//* Product of array except self

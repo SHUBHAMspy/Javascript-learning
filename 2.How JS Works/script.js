@@ -3,7 +3,11 @@
 
 
 
-
+//How our code is Executed
+/************************ */
+// So, JavaScript is always hosted in some environment.
+// And that is most typically a browser such a Google Chrome, Firefox, Safari etc,this is where javascript runs.
+// There can also be other hosts such as the NoJS web server,
 
 // Scope in JS
 /******************* */
@@ -37,6 +41,7 @@
 
 /***  Scope Chain ***/
 // A scope chain refers to the unique spaces that exist from the scope where a variable got called to the global scope.
+// Existing sequentially to form chain, that are linked(chained) from bottom to top
 // the scope chain that exists from the variable’s call to the global scope is:
   // inner() scope ----> outer() scope ----> global scope
   // There are 3 spaces or region from "a"'s invocation scope to it's lexical scope
