@@ -1,7 +1,12 @@
 
-
 // The Promise Api
-Promise.all()
+// There are 4 Promise api:
+// 1. Promise.all()
+// 2. Promise.allSettled()
+// 3. Promise.race()
+// 4. Promise.any()
+
+//Promise.all()
 function order1(){
 	return new Promise((resolve,reject)=>{
 		let order1 = "Dosa"

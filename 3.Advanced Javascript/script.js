@@ -19,19 +19,21 @@ var john={
 
 
 // But if we wanna create multiple objects then there is a need to create a blueprint for all the objects so that it becomes easy to code and the code looks simple 
-// and easy ..... There are many ways  to create objects  the used way is to  create its blueprint using a function constructor() .A blueprint is called 
-// technically a constructor in javascript . In other languages its associated or referred with  classes.
+// and easy ..... There are many ways  to create objects  the used way is to  create its blueprint using a function constructor() . 
+// A blueprint is called technically a constructor in javascript . In other languages its associated or referred with  classes.
 
-// now i am  gonna create an object using function constructor which is actually a constructor which is defined as a function or vice versa .A constructor is a
-//set of like rules or predefined properties that all the objects will be defined with as stated in the same order with the same names with help of a function,
+// now i am  gonna create an object using function constructor which is actually a constructor which is defined as a function or vice versa .
+// A constructor is a set of like rules or predefined properties that all the objects will be defined with as stated in the same order with the same names with help of a function,
 //as function constructor therefore we can say it as a blueprint of all the objects. 
-// And that it posses a general naming which is related to the other object names and
-// the first letter of a constructor or blueprint or function constructor is capital. 
-// And the function constructor is defined in a same way as function expression.
+
+//Properties of Function Constructor:
+// 1. It posses a general naming which is related to the other object names and
+// 2. The first letter of a constructor or blueprint or function constructor is capital. 
+// 3. And the function constructor is defined in a same way as function expression.
 // this is a blueprint using function constructor means constructor in the form of function i.e we define a constructor with the help of a function.
 
 //* Function Constructor
-var Person=function(name,yearOfBirth,job){
+var Person=function(name,yearOfBirth,job){  //It is similar to parameterized constructor of normal laguages
 
 	this.name =name;
 	this.yearOfBirth = yearOfBirth;
@@ -42,11 +44,15 @@ var Person=function(name,yearOfBirth,job){
 // Using a function Constructor i.e using a function to create a constructor(or class normally) you are doing 2 things at the same time
 // 1. You are creating a constructor(i.e class)
 // 2. And at the same time you are defining a constructor(which normally is a function with the same name as the class in oops to assign the values to the instances or objects) 
-//    So you don't need to define the constructor externally(here constructor means function with same name as the class and in JS constructor is a class).
+//    So you don't need to define the constructor externally(here constructor means function with same name as the class and in JS constructor(function constructor) is treated as a class).
 //    And this is all able to happen because of the JavaScript syntax to create a class
 
-// Inheritance in JavaScript
+//* Inheritance in JavaScript
+/**************************** */
 // PROTOTYPE
+
+// Prototype is a property that every function you create in JavaScript has that points to an object.
+// Prototype allows us to share methods across all instances of a function.
 Person.prototype.calculateage= function(yearOfBirth){			
 		console.log(2019-  this.yearOfBirth);
 	}
@@ -96,6 +102,7 @@ var Saurabh=Object.create(personProto,{    //<----
  
 
 //Primitives vs Objects
+/***************************** */
 //* Primitives are passed by value whereas objects are passed by reference.
 
 
@@ -114,7 +121,8 @@ var Saurabh=Object.create(personProto,{    //<----
 // The language does not offer utilities to mutate primitive values.
 
 // Primitives have no methods but still behave as if they do. 
-// When properties are accessed on primitives, JavaScript auto-boxes the value into a wrapper object and accesses the property on that object instead. For example, "foo".includes("f") implicitly creates a String wrapper object and calls String.prototype.includes() on that object. This auto-boxing behavior is not observable in JavaScript code but is a good mental model of various behaviors — for example, why "mutating" primitives does not work (because str.foo = 1 is not assigning to the property foo of str itself, but to an ephemeral wrapper object).
+// When properties are accessed on primitives, JavaScript auto-boxes the value into a wrapper object and accesses the property on that object instead. For example, "foo".includes("f") implicitly creates a String wrapper object and calls String.prototype.includes() on that object.
+// This auto-boxing behavior is not observable in JavaScript code but is a good mental model of various behaviors — for example, why "mutating" primitives does not work (because str.foo = 1 is not assigning to the property foo of str itself, but to an ephemeral wrapper object).
 var a = 23;
 var b = a;
 a = 46;

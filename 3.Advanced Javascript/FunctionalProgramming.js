@@ -206,8 +206,8 @@ console.log(ages);
 console.log(fullAges);
 
 
-/////////////////////
-// Functions returning a functions
+
+//2. Functions returning a functions
 
 function interviewQuestions(job){
 	if (job==='musician') {

@@ -1,23 +1,27 @@
-// Synchronous JavaScript
+//* Synchronous JavaScript
 
 // JavaScript is a synchronous(blocking) single-threaded language
 // It executes code one by one from top to bottom in a serial and sequential manner
 // And does not have multiple threads to execute code parallaly/concurrently.
 
 // In a Restraunt
-// function customer(){
-//     console.log(" Customer Goes to kitchen and makes an order");
+function customer(){
+    console.log(" Customer Goes to kitchen and makes an order");
 
-// }
-// function kitchen(){
-//     console.log("Kitchen prepares the order and give to the customer");
-// }
+}
+function kitchen(){
+    console.log("Kitchen prepares the order and give to the customer");
+}
 
 // const enterIntoRestraunt = customer
 // enterIntoRestraunt() // before ordering and getting the meal customer needs to enter the restraunt
 // kitchen() //kitchen starts working after the customer has entered the restraunt and placed an order
 
-// Asynchronous Javascript
+// Blocking vs Non-Blocking Code
+//Blocking: Blocking refers to operations that block further execution until that operation completes.
+// Non-Blocking: Non-Blocking refers to code that does not block execution
+
+//* Asynchronous Javascript
 // Making JavaScript or utilizing built-in methods to make it work in a non blocking and asynchrounous manner to resemble that things are working parallely
 // Callbacks are functions that are used to make our code to work in asynchronous way
 // As the name suggest it is something that needs to be called back that is afterwards later point of time and not immediately
@@ -44,9 +48,10 @@
 // const enterIntoRestraunt = customer
 // enterIntoRestraunt(waiter) // before ordering and getting the meal customer needs to enter the restraunt
 
-// Callback Hell
+//* Callback Hell
+/********************* */
 // As a Restraunt we need to make money for the business
-// 1.In order to make money we need to welcome the customeri.e customer should enter into the restraunt
+// 1.In order to make money we need to welcome the customer i.e customer should enter into the restraunt
 // 2. and customer will come to make an order
 // 3.and if he makes an order we have to fulfill it
 // 4.Customer will be satisfied if the order is fulfilled and he eats it
@@ -96,51 +101,51 @@
 // 3. Promises
 // 4. Async/Await
 
-// function customer(){
-// 	console.log( "Customer calls waiter for ordering");
-// 	let order = "Dosa"
-// 	let tableno = 24
-// 	setTimeout (()=>{
-// 		waiter(order,tableno)
-// 	},1000)    
-// }
+function customer(){
+	console.log( "Customer calls waiter for ordering");
+	let order = "Dosa"
+	let tableno = 24
+	setTimeout (()=>{
+		waiter(order,tableno)
+	},1000)    
+}
 
-// function waiter(order,tableno) {
-// 	console.log(`Waiter notes the tableno and takes the order of ${tableno} to the Kitchen`);
-// 	setTimeout(()=>{
-// 		kitchen(order)
-// 	},3000) 
-// }
+function waiter(order,tableno) {
+	console.log(`Waiter notes the tableno and takes the order of ${tableno} to the Kitchen`);
+	setTimeout(()=>{
+		kitchen(order)
+	},3000) 
+}
 
-// function kitchen(takesInOrder){
-// 	console.log(`Kitchen prepares the order ${takesInOrder} and give to the waiter`)
-// 	console.log("Waiter brings the order");
-// 	let food = takesInOrder
-// 	setTimeout(() => {
-// 		eat(food)
-// 	},4000);
-// }
-// function eat(food){
-// 	console.log(`Customer eats the ${food} and is satisfied`);
-// 	setTimeout(() => {
-// 		billPayment()
-// 	}, 1000);
+function kitchen(takesInOrder){
+	console.log(`Kitchen prepares the order ${takesInOrder} and give to the waiter`)
+	console.log("Waiter brings the order");
+	let food = takesInOrder
+	setTimeout(() => {
+		eat(food)
+	},4000);
+}
+function eat(food){
+	console.log(`Customer eats the ${food} and is satisfied`);
+	setTimeout(() => {
+		billPayment()
+	}, 1000);
 
-// }
+}
 
-// function billPayment(){
-// 	console.log("Now customer is ready to pay the money");
-// 	console.log("And asks for the bill");   
-// }
+function billPayment(){
+	console.log("Now customer is ready to pay the money");
+	console.log("And asks for the bill");   
+}
 
-// function restrauntOpens(){
-// 	console.log("Customer enters the shop and sits on the table");
-// 	setTimeout(() => {
-// 		customer()
-// 	}, 2000);
-// }
+function restrauntOpens(){
+	console.log("Customer enters the shop and sits on the table");
+	setTimeout(() => {
+		customer()
+	}, 2000);
+}
 
-// restrauntOpens()
+restrauntOpens()
 
 // Promises
 
@@ -150,7 +155,9 @@
 //*  A promise is a returned object from any asynchronous function, to which callback methods can be added based on the previous function’s result.
 //Promises use .then() method to call async callbacks. 
 //We can chain as many callbacks as we want and the order is also strictly maintained.
+
 //* These promises are put in event queue so that they don’t block subsequent JS code. Also once the results are returned, the event queue finishes its operations.
+
 // We can produce or consume promises. 
 // When we produce a promise, we create a new promise and send a result using that promise. 
 // When we consume a promise, we use callback functions for the fulfilled and rejected states of that promise.
@@ -185,82 +192,82 @@
 // So, Let's consider that when you enter a restraunt for the restraunt is bound to serve(had made a promise) inorder to run its business to every customer
 //const promise = new Promise ();
 
-function customer(){
-	console.log( "Customer calls waiter for ordering");
-	return({order:"Dosa",tableno:24})
-}
+// function customer(){
+// 	console.log( "Customer calls waiter for ordering");
+// 	return({order:"Dosa",tableno:24})
+// }
 
-function waiter(order,tableno) {
-	return new Promise((resolve,reject) =>{
-		setTimeout(()=>{
-			console.log(`Waiter notes the tableno and takes the order of ${tableno} to the Kitchen`);
-			let orderAvailable = true
-			if (orderAvailable) {
-				resolve(order)
-			}
-			else
-				reject(new Error(`Sorry!! ${order} is not available`))
-		},1000)
-	})
-}
+// function waiter(order,tableno) {
+// 	return new Promise((resolve,reject) =>{
+// 		setTimeout(()=>{
+// 			console.log(`Waiter notes the tableno and takes the order of ${tableno} to the Kitchen`);
+// 			let orderAvailable = true
+// 			if (orderAvailable) {
+// 				resolve(order)
+// 			}
+// 			else
+// 				reject(new Error(`Sorry!! ${order} is not available`))
+// 		},1000)
+// 	})
+// }
 
-function kitchen(takesInOrder){
-	return new Promise((resolve,reject) => {
-		let food = takesInOrder
-		setTimeout(() => {
-			console.log(`Kitchen prepares the order ${takesInOrder} and give to the waiter`)
-			console.log("Waiter brings the order");
-			resolve(food)
-		},3000);
-	});
-}
-function eat(food){
-	return new Promise((resolve,reject)=>{
-		setTimeout(() => {
-			console.log(`Customer eats the ${food} and is satisfied :)`);
-			resolve()
-		}, 4000);
-	});
+// function kitchen(takesInOrder){
+// 	return new Promise((resolve,reject) => {
+// 		let food = takesInOrder
+// 		setTimeout(() => {
+// 			console.log(`Kitchen prepares the order ${takesInOrder} and give to the waiter`)
+// 			console.log("Waiter brings the order");
+// 			resolve(food)
+// 		},3000);
+// 	});
+// }
+// function eat(food){
+// 	return new Promise((resolve,reject)=>{
+// 		setTimeout(() => {
+// 			console.log(`Customer eats the ${food} and is satisfied :)`);
+// 			resolve()
+// 		}, 4000);
+// 	});
 
-}
-function billPayment(bill){
-	return new Promise((resolve,reject)=>{
-		setTimeout(() => {
-			console.log("Now customer is ready to pay the money");
-			console.log(`And asks for the bill and pays the ${bill} rupees bill`);
-			resolve()
-		}, 1000);
-	});
+// }
+// function billPayment(bill){
+// 	return new Promise((resolve,reject)=>{
+// 		setTimeout(() => {
+// 			console.log("Now customer is ready to pay the money");
+// 			console.log(`And asks for the bill and pays the ${bill} rupees bill`);
+// 			resolve()
+// 		}, 1000);
+// 	});
     
-}
-function restrauntOpens(){
-	return new Promise((resolve,reject) => {
-		console.log("Customer enters the shop and sits on the table");
-		setTimeout(() => {
-			resolve(customer())
-		}, 2000);
-	})
-}
-restrauntOpens().then(({order,tableno}) => {
-  return waiter(order,tableno)
-})
-.then((takesInOrder)=>{
-  return kitchen(takesInOrder)
-})
-.then((food)=>{
-  return eat(food)
-})
-.then(() =>{
-	let bill = 72
-	let billPayed = false
-	if (!billPayed) {
-			return billPayment(bill)
-	}
-})
-.catch((message) =>{
-	console.log(message);
-	console.log("Customer leaves :(");
-})
+// }
+// function restrauntOpens(){
+// 	return new Promise((resolve,reject) => {
+// 		console.log("Customer enters the shop and sits on the table");
+// 		setTimeout(() => {
+// 			resolve(customer())
+// 		}, 2000);
+// 	})
+// }
+// restrauntOpens().then(({order,tableno}) => {
+//   return waiter(order,tableno)
+// })
+// .then((takesInOrder)=>{
+//   return kitchen(takesInOrder)
+// })
+// .then((food)=>{
+//   return eat(food)
+// })
+// .then(() =>{
+// 	let bill = 72
+// 	let billPayed = false
+// 	if (!billPayed) {
+// 			return billPayment(bill)
+// 	}
+// })
+// .catch((message) =>{
+// 	console.log(message);
+// 	console.log("Customer leaves :(");
+// })
 
 // Async and Await
 
